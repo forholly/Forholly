@@ -2,58 +2,130 @@
 <html>
 <head>
   <title>For Holly</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f7f5f2;
-      color: #333;
-      max-width: 800px;
+      margin: 0;
+      font-family: Georgia, serif;
+      background: #f7f4ef;
+      color: #3c3c3c;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 900px;
       margin: auto;
-      padding: 40px 20px;
-      line-height: 1.6;
+      padding: 40px 24px 80px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px 60px;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 4rem;
+      font-weight: normal;
       margin-bottom: 10px;
+      color: #2f2f2f;
     }
 
-    h2 {
-      margin-top: 40px;
+    .subtitle {
+      font-size: 1.2rem;
+      color: #6a6a6a;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-top: 70px;
+      margin-bottom: 20px;
+      font-weight: normal;
     }
 
     .card {
       background: white;
-      border-radius: 12px;
-      padding: 24px;
-      margin-top: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      border-radius: 22px;
+      padding: 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      transition: transform 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    .emoji {
+      font-size: 1.8rem;
+    }
+
+    .footer {
+      text-align: center;
+      color: #888;
+      margin-top: 80px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 700px) {
+      h1 {
+        font-size: 2.7rem;
+      }
+
+      .hero {
+        padding-top: 50px;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <h1>For Holly ❤️</h1>
+<div class="container">
 
-  <p>
-    A place for memories, adventures, little moments, and all the things
-    Dad never wants us to forget.
-  </p>
+  <div class="hero">
+    <h1>For Holly ❤️</h1>
+
+    <p class="subtitle">
+      A place for memories, adventures, little moments,
+      and all the things Dad never wants us to forget.
+    </p>
+  </div>
+
+  <h2 class="section-title">Featured Memories</h2>
 
   <div class="card">
-    <h2>🌍 Adventures</h2>
-    <p>Trips, holidays, funny moments and places we've explored.</p>
+    <div class="emoji">🌍</div>
+    <h3>Adventures</h3>
+    <p>
+      Trips, holidays, funny moments and places we explored together.
+    </p>
   </div>
 
   <div class="card">
-    <h2>🎨 Holly's Creations</h2>
-    <p>Drawings, school projects, cards and little masterpieces.</p>
+    <div class="emoji">🎨</div>
+    <h3>Holly's Creations</h3>
+    <p>
+      Drawings, school projects, handmade cards and little masterpieces.
+    </p>
   </div>
 
   <div class="card">
-    <h2>📷 Memories</h2>
-    <p>Photos, stories, voice notes and moments that matter.</p>
+    <div class="emoji">📷</div>
+    <h3>Memories</h3>
+    <p>
+      Photos, voice notes, stories and the moments that mattered.
+    </p>
   </div>
+
+  <div class="footer">
+    Built with love ❤️
+  </div>
+
+</div>
 
 </body>
 </html>
