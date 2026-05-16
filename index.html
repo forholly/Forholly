@@ -12,64 +12,85 @@
       margin: 0;
       font-family: Georgia, serif;
       background: #f4dfe7;
-      color: #3c3c3c;
+      color: #3b3b3b;
       line-height: 1.7;
     }
 
     .container {
-      max-width: 900px;
+      max-width: 950px;
       margin: auto;
-      padding: 40px 24px 80px;
+      padding: 40px 24px 100px;
     }
 
     .hero {
       text-align: center;
-      padding: 80px 20px 60px;
+      padding: 90px 20px 70px;
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 5.5rem;
+      font-size: 5.8rem;
       font-weight: normal;
-      margin-bottom: 10px;
-      color: #2f2f2f;
+      margin-bottom: 20px;
+      color: #2d2d2d;
     }
 
     .subtitle {
-      font-size: 1.2rem;
-      color: #6a6a6a;
-      max-width: 600px;
+      font-size: 1.25rem;
+      color: #5c5c5c;
+      max-width: 650px;
       margin: auto;
     }
 
+    .welcome-card {
+      background: rgba(255,255,255,0.45);
+      backdrop-filter: blur(10px);
+      border-radius: 28px;
+      padding: 35px;
+      margin-bottom: 60px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.06);
+    }
+
     .section-title {
-      font-size: 1.8rem;
-      margin-top: 70px;
-      margin-bottom: 20px;
+      font-size: 2rem;
       font-weight: normal;
+      margin-bottom: 25px;
+      color: #2f2f2f;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
     }
 
     .card {
-      background: white;
-      border-radius: 22px;
-      padding: 30px;
-      margin-bottom: 24px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.85);
+      border-radius: 26px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
       transition: transform 0.25s ease;
     }
 
     .card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-5px);
     }
 
     .emoji {
-      font-size: 1.8rem;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      margin-top: 0;
+      font-weight: normal;
+      font-size: 1.4rem;
     }
 
     .footer {
       text-align: center;
-      color: #888;
-      margin-top: 80px;
+      margin-top: 90px;
+      color: #7a7a7a;
       font-size: 0.95rem;
     }
 
@@ -79,7 +100,7 @@
       }
 
       .hero {
-        padding-top: 50px;
+        padding-top: 60px;
       }
     }
   </style>
@@ -97,30 +118,61 @@
     </p>
   </div>
 
-  <h2 class="section-title">Featured Memories</h2>
-
-  <div class="card">
-    <div class="emoji">🌍</div>
-    <h3>Adventures</h3>
+  <div class="welcome-card">
+    <h2>Welcome</h2>
     <p>
-      Trips, holidays, funny moments and places we explored together.
+      A quiet place to keep memories safe.
+      The little things, the big adventures,
+      funny moments, photos, drawings,
+      places we explored, and things
+      worth remembering.
     </p>
   </div>
 
-  <div class="card">
-    <div class="emoji">🎨</div>
-    <h3>Holly's Creations</h3>
-    <p>
-      Drawings, school projects, handmade cards and little masterpieces.
-    </p>
+  <h2 class="section-title">Explore</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="emoji">📷</div>
+      <h3>Memories</h3>
+      <p>
+        Photos, stories, voice notes
+        and moments that mattered.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🌍</div>
+      <h3>Adventures</h3>
+      <p>
+        Holidays, day trips,
+        funny moments and places explored.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🎨</div>
+      <h3>Holly’s Creations</h3>
+      <p>
+        School projects, drawings,
+        cards and little masterpieces.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🕰</div>
+      <h3>Timeline</h3>
+      <p>
+        Travel through memories
+        year by year.
+      </p>
+    </div>
+
   </div>
 
-  <div class="card">
-    <div class="emoji">📷</div>
-    <h3>Memories</h3>
-    <p>
-      Photos, voice notes, stories and the moments that mattered.
-    </p>
+  <div class="footer">
+    Built with love ❤️
   </div>
 
 </div>
