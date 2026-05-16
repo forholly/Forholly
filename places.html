@@ -54,30 +54,25 @@
       transform: translateX(-4px);
     }
 
-    .section {
-      margin-bottom: 55px;
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
-    .section-title {
+    .item {
+      width: fit-content;
       font-size: 1.5rem;
       font-weight: 300;
-      margin-bottom: 18px;
-      color: rgba(255,255,255,0.92);
-    }
-
-    .place {
-      font-size: 1.2rem;
-      margin-bottom: 12px;
-      color: rgba(255,255,255,0.74);
+      color: rgba(255,255,255,0.82);
       cursor: pointer;
-      transition: 0.25s ease;
-      width: fit-content;
-      font-weight: 300;
+      transition: 0.28s ease;
+      letter-spacing: 0.2px;
     }
 
-    .place:hover {
-      color: white;
+    .item:hover {
       transform: translateX(6px);
+      color: white;
     }
 
     .signature {
@@ -89,12 +84,8 @@
     }
 
     @media (max-width: 600px) {
-      .section-title {
-        font-size: 1.3rem;
-      }
-
-      .place {
-        font-size: 1.05rem;
+      .item {
+        font-size: 1.25rem;
       }
 
       .signature {
@@ -112,40 +103,11 @@
 
     <a href="index.html" class="back">← Home</a>
 
-    <div class="section">
-      <div class="section-title">No Legs Required</div>
-
-      <div class="place">Christmas</div>
-      <div class="place">Garden Days</div>
-      <div class="place">Movie Nights</div>
-      <div class="place">Baking</div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Legs Required</div>
-
-      <div class="place">Duck Pond</div>
-      <div class="place">Inverurie</div>
-      <div class="place">Parks</div>
-      <div class="place">Local Adventures</div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Car Required</div>
-
-      <div class="place">Cairngorms</div>
-      <div class="place">Aberdeen</div>
-      <div class="place">Edinburgh</div>
-      <div class="place">Cornwall</div>
-    </div>
-
-    <div class="section">
-      <div class="section-title">Plane Required</div>
-
-      <div class="place">Vietnam</div>
-      <div class="place">Thailand</div>
-      <div class="place">Tenerife</div>
-      <div class="place">Norway</div>
+    <div class="list">
+      <div class="item">No Legs Required</div>
+      <div class="item">Legs Required</div>
+      <div class="item">Car Required</div>
+      <div class="item">Plane Required</div>
     </div>
 
   </div>
