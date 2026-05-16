@@ -16,7 +16,7 @@
     body {
       margin: 0;
       font-family: Georgia, serif;
-      background: #000;
+      background: #081018;
       color: white;
       overflow: hidden;
     }
@@ -26,13 +26,13 @@
       width: 100vw;
     }
 
-    /* Recolour map */
+    /* Recolour the map properly */
     .leaflet-tile {
       filter:
-        hue-rotate(140deg)
-        saturate(1.4)
-        brightness(1.15)
-        contrast(1.05);
+        hue-rotate(135deg)
+        saturate(0.9)
+        brightness(0.55)
+        contrast(1.15);
     }
 
     .overlay {
@@ -118,7 +118,7 @@
   });
 
   L.tileLayer(
-    'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     {
       attribution: '&copy; OpenStreetMap',
       noWrap: true
