@@ -5,34 +5,22 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
-
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       overflow: hidden;
-      background: #0d1014;
+      background: #05070a;
       font-family: Georgia, serif;
       color: white;
     }
 
-    #map {
-      height: 100vh;
+    #globeViz {
       width: 100vw;
-    }
-
-    /* Gentle tint only */
-    .leaflet-tile {
-      filter:
-        saturate(0.9)
-        brightness(0.82)
-        contrast(1.05)
-        hue-rotate(18deg);
+      height: 100vh;
     }
 
     .overlay {
@@ -40,13 +28,12 @@
       top: 40px;
       left: 40px;
       z-index: 1000;
-      text-shadow: 0 3px 16px rgba(0,0,0,0.45);
     }
 
     .back {
       display: inline-block;
       margin-bottom: 20px;
-      color: rgba(255,255,255,0.78);
+      color: rgba(255,255,255,0.75);
       text-decoration: none;
       font-size: 0.95rem;
     }
@@ -55,6 +42,7 @@
       margin: 0;
       font-size: 2rem;
       font-weight: 300;
+      text-shadow: 0 3px 18px rgba(0,0,0,0.4);
     }
 
     .signature {
@@ -85,6 +73,9 @@
       }
     }
   </style>
+
+  <script src="https://unpkg.com/three"></script>
+  <script src="https://unpkg.com/globe.gl"></script>
 </head>
 
 <body>
@@ -94,65 +85,73 @@
   <h1 id="map-title">Places</h1>
 </div>
 
-<div id="map"></div>
+<div id="globeViz"></div>
 
 <div class="signature">
   Created with love by Rob Hartshorn · 2026
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
 <script>
 const params = new URLSearchParams(window.location.search);
 const mode = params.get("mode");
 
-const map = L.map("map", {
-  zoomControl: false
-});
-
-L.tileLayer(
-  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png",
-  {
-    noWrap: true
-  }
-).addTo(map);
-
-L.tileLayer(
-  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}.png",
-  {
-    opacity: 0.18,
-    noWrap: true
-  }
-).addTo(map);
+const globe = Globe()
+(document.getElementById('globeViz'))
+.globeImageUrl(
+'https://unpkg.com/three-globe/example/img/earth-dark.jpg'
+)
+.backgroundColor('#05070a')
+.showAtmosphere(true)
+.atmosphereColor('#6d8cff')
+.atmosphereAltitude(0.18);
 
 if (mode === "plane") {
-  document.getElementById("map-title").textContent =
-    "Plane Required";
 
-  map.fitBounds([
-    [-55, -180],
-    [80, 180]
-  ]);
+  document.getElementById("map-title")
+    .textContent = "Plane Required";
+
+  globe.pointOfView({
+    lat: 20,
+    lng: 0,
+    altitude: 2.2
+  });
+
 }
 
 else if (mode === "car") {
-  document.getElementById("map-title").textContent =
-    "Car Required";
 
-  map.fitBounds([
-    [49, -9],
-    [61, 3]
-  ]);
+  document.getElementById("map-title")
+    .textContent = "Car Required";
+
+  globe.pointOfView({
+    lat: 55,
+    lng: -3,
+    altitude: 0.8
+  }, 1500);
+
 }
 
 else if (mode === "legs") {
-  document.getElementById("map-title").textContent =
-    "Legs Required";
 
-  map.fitBounds([
-    [57.10, -2.75],
-    [57.45, -1.95]
-  ]);
+  document.getElementById("map-title")
+    .textContent = "Legs Required";
+
+  globe.pointOfView({
+    lat: 57.3,
+    lng: -2.3,
+    altitude: 0.15
+  }, 1500);
+
+}
+
+else {
+
+  globe.pointOfView({
+    lat: 54,
+    lng: -3,
+    altitude: 1.4
+  });
+
 }
 </script>
 
