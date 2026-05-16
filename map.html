@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Places · For Holly</title>
+  <title>Map · For Holly</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
 
   <style>
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      overflow: hidden;
-      background: #000;
       font-family: Georgia, serif;
+      overflow: hidden;
+      background: #1b1b1b;
       color: white;
     }
 
@@ -24,17 +26,147 @@
       width: 100vw;
     }
 
-    /* THE WEIRD COLOURS */
+    /* dreamy recolour */
     .leaflet-tile {
       filter:
-        hue-rotate(115deg)
-        saturate(1.35)
-        brightness(0.82)
-        contrast(1.08);
+        hue-rotate(145deg)
+        saturate(0.85)
+        brightness(0.88)
+        contrast(1.05);
     }
 
     .overlay {
       position: absolute;
+      top: 40px;
+      left: 40px;
+      z-index: 1000;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: 0.25s ease;
+    }
+
+    .back:hover {
+      color: white;
+      transform: translateX(-4px);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 300;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+
+    .signature {
+      position: fixed;
+      left: 24px;
+      bottom: 18px;
+      z-index: 1000;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    @media (max-width: 600px) {
+      .overlay {
+        top: 25px;
+        left: 25px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .back {
+        font-size: 0.85rem;
+      }
+
+      .signature {
+        font-size: 0.55rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="overlay">
+  <a href="places.html" class="back">← Places</a>
+  <h1 id="map-title">Places</h1>
+</div>
+
+<div id="map"></div>
+
+<div class="signature">
+  Created with love by Rob Hartshorn · 2026
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const mode = params.get("mode");
+
+  const map = L.map("map", {
+    zoomControl: false,
+    attributionControl: false,
+    worldCopyJump: false
+  });
+
+  L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",
+    {
+      noWrap: true,
+      subdomains: "abcd",
+      maxZoom: 18
+    }
+  ).addTo(map);
+
+  // soft labels only
+  L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png",
+    {
+      opacity: 0.45,
+      subdomains: "abcd"
+    }
+  ).addTo(map);
+
+  if (mode === "plane") {
+    document.getElementById("map-title").textContent =
+      "Plane Required";
+
+    map.setView([22, 5], 2);
+  }
+
+  else if (mode === "car") {
+    document.getElementById("map-title").textContent =
+      "Car Required";
+
+    map.setView([56, -3], 5.8);
+  }
+
+  else if (mode === "legs") {
+    document.getElementById("map-title").textContent =
+      "Legs Required";
+
+    map.setView([57.28, -2.35], 10.8);
+  }
+
+  else {
+    document.getElementById("map-title").textContent =
+      "Places";
+
+    map.setView([55, -3], 5);
+  }
+</script>
+
+</body>
+</html>      position: absolute;
       top: 40px;
       left: 40px;
       z-index: 1000;
