@@ -16,7 +16,7 @@
     body {
       margin: 0;
       font-family: Georgia, serif;
-      background: #081018;
+      background: #000;
       color: white;
       overflow: hidden;
     }
@@ -26,13 +26,14 @@
       width: 100vw;
     }
 
-    /* Recolour the map properly */
+    /* Dreamy atlas colours */
     .leaflet-tile {
       filter:
-        hue-rotate(135deg)
-        saturate(0.9)
-        brightness(0.55)
-        contrast(1.15);
+        hue-rotate(145deg)
+        saturate(0.7)
+        brightness(0.92)
+        contrast(0.95)
+        sepia(0.18);
     }
 
     .overlay {
@@ -40,12 +41,13 @@
       top: 40px;
       left: 40px;
       z-index: 1000;
+      text-shadow: 0 3px 18px rgba(0,0,0,0.45);
     }
 
     .back {
       display: inline-block;
       margin-bottom: 20px;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.78);
       text-decoration: none;
       font-size: 0.95rem;
       transition: 0.25s ease;
@@ -60,7 +62,6 @@
       font-size: 2rem;
       font-weight: 300;
       margin: 0;
-      text-shadow: 0 3px 16px rgba(0,0,0,0.35);
     }
 
     .signature {
@@ -117,10 +118,21 @@
     worldCopyJump: false
   });
 
+  /* Cleaner, less cluttered map */
   L.tileLayer(
-    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
     {
       attribution: '&copy; OpenStreetMap',
+      noWrap: true
+    }
+  ).addTo(map);
+
+  /* Major labels only */
+  L.tileLayer(
+    'https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png',
+    {
+      pane: 'shadowPane',
+      opacity: 0.45,
       noWrap: true
     }
   ).addTo(map);
@@ -129,21 +141,21 @@
     document.getElementById("map-title").textContent =
       "Plane Required";
 
-    map.setView([20, 0], 2);
+    map.setView([20, 0], 2.3);
   }
 
   else if (mode === "car") {
     document.getElementById("map-title").textContent =
       "Car Required";
 
-    map.setView([55.5, -3], 6);
+    map.setView([56, -3], 5.8);
   }
 
   else if (mode === "legs") {
     document.getElementById("map-title").textContent =
       "Legs Required";
 
-    map.setView([57.33, -2.38], 12);
+    map.setView([57.33, -2.38], 10.8);
   }
 
   else {
