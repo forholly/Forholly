@@ -57,35 +57,29 @@
     h1 {
       font-weight: 300;
       font-size: 2.8rem;
-      margin-bottom: 18px;
+      margin-bottom: 50px;
       text-shadow: 0 3px 16px rgba(0,0,0,0.3);
     }
 
-    .intro {
-      color: rgba(255,255,255,0.8);
-      margin-bottom: 60px;
-      max-width: 500px;
-      line-height: 1.7;
-    }
-
     .section {
-      margin-bottom: 50px;
+      margin-bottom: 55px;
     }
 
     .section-title {
-      font-size: 1.6rem;
-      margin-bottom: 18px;
+      font-size: 1.5rem;
       font-weight: 300;
+      margin-bottom: 18px;
       color: rgba(255,255,255,0.92);
     }
 
     .place {
       font-size: 1.2rem;
-      margin-bottom: 14px;
-      color: rgba(255,255,255,0.76);
+      margin-bottom: 12px;
+      color: rgba(255,255,255,0.74);
       cursor: pointer;
       transition: 0.25s ease;
       width: fit-content;
+      font-weight: 300;
     }
 
     .place:hover {
@@ -100,6 +94,20 @@
       font-size: 0.7rem;
       color: rgba(255,255,255,0.45);
     }
+
+    @media (max-width: 600px) {
+      .section-title {
+        font-size: 1.3rem;
+      }
+
+      .place {
+        font-size: 1.05rem;
+      }
+
+      .signature {
+        font-size: 0.6rem;
+      }
+    }
   </style>
 </head>
 
@@ -113,22 +121,35 @@
 
     <h1>Places</h1>
 
-    <div class="intro">
-      Explore adventures, holidays, days out,
-      places around home and memories from around the world.
+    <div class="section">
+      <div class="section-title">No Legs Required</div>
+
+      <div class="place">Christmas</div>
+      <div class="place">Garden Days</div>
+      <div class="place">Movie Nights</div>
+      <div class="place">Baking</div>
     </div>
 
     <div class="section">
-      <div class="section-title">Around Home</div>
+      <div class="section-title">Legs Required</div>
 
+      <div class="place">Duck Pond</div>
       <div class="place">Inverurie</div>
-      <div class="place">Aberdeen</div>
-      <div class="place">Cairngorms</div>
-      <div class="place">Days Out</div>
+      <div class="place">Parks</div>
+      <div class="place">Local Adventures</div>
     </div>
 
     <div class="section">
-      <div class="section-title">The World</div>
+      <div class="section-title">Car Required</div>
+
+      <div class="place">Cairngorms</div>
+      <div class="place">Aberdeen</div>
+      <div class="place">Edinburgh</div>
+      <div class="place">Cornwall</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Plane Required</div>
 
       <div class="place">Vietnam</div>
       <div class="place">Thailand</div>
