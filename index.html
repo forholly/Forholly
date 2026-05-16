@@ -8,71 +8,106 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Georgia, serif;
-      background: #f4dfe7;
-      color: #383838;
+      color: white;
       overflow-x: hidden;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 70px 30px 120px;
+      background: #000;
     }
 
     .hero {
-      text-align: center;
-      margin-bottom: 90px;
+      position: relative;
+      min-height: 100vh;
+      background-image:
+        linear-gradient(
+          to right,
+          rgba(0,0,0,0.45) 0%,
+          rgba(0,0,0,0.18) 35%,
+          rgba(0,0,0,0.08) 60%,
+          rgba(0,0,0,0.12) 100%
+        ),
+        url('hero.jpg');
+
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+    }
+
+    .content {
+      padding-left: 8%;
+      max-width: 650px;
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 6rem;
+      font-size: 7rem;
       font-weight: normal;
-      margin-bottom: 10px;
-      color: #2c2c2c;
+      margin: 0 0 10px;
+      text-shadow: 0 3px 18px rgba(0,0,0,0.35);
     }
 
     .subtitle {
-      font-size: 1.15rem;
-      color: #5c5c5c;
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 70px;
+      letter-spacing: 0.5px;
     }
 
     .list {
       display: flex;
       flex-direction: column;
-      gap: 34px;
+      gap: 26px;
+      max-width: 400px;
     }
 
     .item {
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-      padding-bottom: 22px;
-      transition: all 0.3s ease;
+      font-size: 2rem;
+      color: rgba(255,255,255,0.82);
       cursor: pointer;
+      transition: all 0.28s ease;
+      width: fit-content;
     }
 
     .item:hover {
-      transform: translateX(8px);
+      transform: translateX(10px);
+      color: white;
     }
 
-    .item-title {
-      font-size: 2rem;
-      transition: color 0.3s ease;
+    @media (max-width: 900px) {
+      .hero {
+        background-position: 70% center;
+      }
+
+      h1 {
+        font-size: 5rem;
+      }
+
+      .item {
+        font-size: 1.6rem;
+      }
+
+      .content {
+        padding: 40px;
+      }
     }
 
-    .item:hover .item-title {
-      color: #7a5163;
-    }
-
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
       h1 {
         font-size: 4rem;
       }
 
-      .item-title {
-        font-size: 1.5rem;
+      .subtitle {
+        font-size: 1rem;
+      }
+
+      .item {
+        font-size: 1.4rem;
       }
     }
   </style>
@@ -80,37 +115,24 @@
 
 <body>
 
-<div class="container">
+<section class="hero">
+  <div class="content">
 
-  <div class="hero">
     <h1>For Holly</h1>
 
     <p class="subtitle">
-      A place for memories, adventures, moments.
+      memories • adventures • moments
     </p>
-  </div>
 
-  <div class="list">
-
-    <div class="item">
-      <div class="item-title">Memories</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title">Adventures</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title">Creations</div>
-    </div>
-
-    <div class="item">
-      <div class="item-title">Timeline</div>
+    <div class="list">
+      <div class="item">Memories</div>
+      <div class="item">Adventures</div>
+      <div class="item">Creations</div>
+      <div class="item">Timeline</div>
     </div>
 
   </div>
-
-</div>
+</section>
 
 </body>
 </html>
