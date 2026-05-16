@@ -26,13 +26,14 @@
       width: 100vw;
     }
 
-    /* Weird dreamy map colours */
+    /* KEEP pink sea, weird land */
     .leaflet-tile {
       filter:
-        hue-rotate(185deg)
-        saturate(1.35)
-        brightness(0.84)
-        contrast(1.08);
+        hue-rotate(115deg)
+        saturate(1.45)
+        brightness(0.86)
+        contrast(1.08)
+        sepia(0.15);
     }
 
     .overlay {
@@ -117,7 +118,6 @@
     worldCopyJump: false
   });
 
-  /* No clutter roads */
   L.tileLayer(
     'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
     {
@@ -126,7 +126,6 @@
     }
   ).addTo(map);
 
-  /* Major labels only */
   L.tileLayer(
     'https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png',
     {
