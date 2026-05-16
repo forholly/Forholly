@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Map · For Holly</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background: #000;
+      color: white;
+      overflow: hidden;
+    }
+
+    #map {
+      height: 100vh;
+      width: 100vw;
+      filter:
+        brightness(0.82)
+        contrast(1.08)
+        saturate(0.7);
+    }
+
+    .overlay {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      z-index: 1000;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: 0.25s ease;
+    }
+
+    .back:hover {
+      color: white;
+      transform: translateX(-4px);
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 300;
+      margin: 0;
+      text-shadow: 0 3px 16px rgba(0,0,0,0.4);
+    }
+
+    .signature {
+      position: fixed;
+      bottom: 18px;
+      left: 24px;
+      z-index: 1000;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    @media (max-width: 600px) {
+      .overlay {
+        top: 25px;
+        left: 25px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .back {
+        font-size: 0.85rem;
+      }
+
+      .signature {
+        font-size: 0.55rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="overlay">
+  <a href="places.html" class="back">← Places</a>
+  <h1 id="map-title">Places</h1>
+</div>
+
+<div id="map"></div>
+
+<div class="signature">
+  Created with love by Rob Hartshorn · 2026
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const mode = params.get("mode");
+
+  const map = L.map('map', {
+    zoomControl: false
+  });
+
+  L.tileLayer(
+    'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+    {
+      attribution: '&copy; OpenStreetMap'
+    }
+  ).addTo(map);
+
+  if (mode === "plane") {
+    document.getElementById("map-title").textContent =
+      "Plane Required";
+
+    map.setView([20, 10], 2);
+  }
+
+  else if (mode === "car") {
+    document.getElementById("map-title").textContent =
+      "Car Required";
+
+    map.setView([55, -3], 5);
+  }
+
+  else if (mode === "legs") {
+    document.getElementById("map-title").textContent =
+      "Legs Required";
+
+    map.setView([57.286, -2.377], 11);
+  }
+
+  else {
+    document.getElementById("map-title").textContent =
+      "Places";
+
+    map.setView([54, -3], 4);
+  }
+</script>
+
+</body>
+</html>
