@@ -5,8 +5,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
 
   <style>
     * { box-sizing: border-box; }
@@ -14,7 +16,7 @@
     body {
       margin: 0;
       overflow: hidden;
-      background: #000;
+      background: #0d1014;
       font-family: Georgia, serif;
       color: white;
     }
@@ -24,14 +26,13 @@
       width: 100vw;
     }
 
-    /* EXPERIMENTAL COLOUR VIBE */
+    /* Gentle tint only */
     .leaflet-tile {
       filter:
-        hue-rotate(95deg)
-        saturate(1.6)
-        brightness(0.92)
-        contrast(1.12)
-        sepia(0.35);
+        saturate(0.9)
+        brightness(0.82)
+        contrast(1.05)
+        hue-rotate(18deg);
     }
 
     .overlay {
@@ -45,7 +46,7 @@
     .back {
       display: inline-block;
       margin-bottom: 20px;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.78);
       text-decoration: none;
       font-size: 0.95rem;
     }
@@ -64,6 +65,25 @@
       font-size: 0.7rem;
       color: rgba(255,255,255,0.45);
     }
+
+    @media (max-width: 600px) {
+      .overlay {
+        top: 25px;
+        left: 25px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .back {
+        font-size: 0.85rem;
+      }
+
+      .signature {
+        font-size: 0.55rem;
+      }
+    }
   </style>
 </head>
 
@@ -77,7 +97,7 @@
 <div id="map"></div>
 
 <div class="signature">
-Created with love by Rob Hartshorn · 2026
+  Created with love by Rob Hartshorn · 2026
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -86,52 +106,52 @@ Created with love by Rob Hartshorn · 2026
 const params = new URLSearchParams(window.location.search);
 const mode = params.get("mode");
 
-const map = L.map('map', {
+const map = L.map("map", {
   zoomControl: false
 });
 
 L.tileLayer(
-'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
-{
-  noWrap: true
-}
+  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png",
+  {
+    noWrap: true
+  }
 ).addTo(map);
 
 L.tileLayer(
-'https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png',
-{
-  opacity: 0.28,
-  noWrap: true
-}
+  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}.png",
+  {
+    opacity: 0.18,
+    noWrap: true
+  }
 ).addTo(map);
 
 if (mode === "plane") {
   document.getElementById("map-title").textContent =
-  "Plane Required";
+    "Plane Required";
 
   map.fitBounds([
-    [-60, -180],
+    [-55, -180],
     [80, 180]
   ]);
 }
 
 else if (mode === "car") {
   document.getElementById("map-title").textContent =
-  "Car Required";
+    "Car Required";
 
   map.fitBounds([
     [49, -9],
-    [60, 3]
+    [61, 3]
   ]);
 }
 
 else if (mode === "legs") {
   document.getElementById("map-title").textContent =
-  "Legs Required";
+    "Legs Required";
 
   map.fitBounds([
-    [57.10, -2.65],
-    [57.45, -2.00]
+    [57.10, -2.75],
+    [57.45, -1.95]
   ]);
 }
 </script>
