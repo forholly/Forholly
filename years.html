@@ -18,6 +18,7 @@
 
     .hero {
       min-height: 100vh;
+
       background-image:
         linear-gradient(
           to right,
@@ -28,8 +29,8 @@
         ),
         url('attack.jpg.jfif');
 
-      background-size: cover;
-      background-position: center center;
+      background-size: 110%;
+      background-position: center top;
     }
 
     .container {
@@ -88,6 +89,11 @@
     @media (max-width: 600px) {
       .container {
         padding: 7vh 8%;
+      }
+
+      .hero {
+        background-size: cover;
+        background-position: center center;
       }
 
       h1 {
