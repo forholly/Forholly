@@ -15,7 +15,7 @@
       font-family: Georgia, serif;
       background: #000;
       color: white;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
     .hero {
@@ -37,16 +37,15 @@
 
     .container {
       padding: 9vh 8%;
-      max-width: 900px;
     }
 
     .back {
       display: inline-block;
-      margin-bottom: 60px;
-      color: rgba(255,255,255,0.7);
+      margin-bottom: 45px;
+      color: rgba(255,255,255,0.65);
       text-decoration: none;
       transition: 0.25s ease;
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
 
     .back:hover {
@@ -54,33 +53,25 @@
       transform: translateX(-4px);
     }
 
-    h1 {
-      font-weight: 300;
-      font-size: 2.8rem;
-      margin-bottom: 20px;
-      text-shadow: 0 3px 16px rgba(0,0,0,0.3);
-    }
-
-    .intro {
-      color: rgba(255,255,255,0.8);
-      margin-bottom: 60px;
-      max-width: 500px;
-      line-height: 1.7;
+    .years {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .year {
-      font-size: 1.6rem;
-      margin-bottom: 18px;
+      width: fit-content;
+      font-size: 1rem;
+      font-weight: 300;
       color: rgba(255,255,255,0.78);
       cursor: pointer;
       transition: 0.25s ease;
-      width: fit-content;
-      font-weight: 300;
+      letter-spacing: 0.2px;
     }
 
     .year:hover {
-      color: white;
       transform: translateX(6px);
+      color: white;
     }
 
     .signature {
@@ -89,6 +80,16 @@
       left: 24px;
       font-size: 0.7rem;
       color: rgba(255,255,255,0.45);
+    }
+
+    @media (max-width: 600px) {
+      .year {
+        font-size: 0.95rem;
+      }
+
+      .signature {
+        font-size: 0.6rem;
+      }
     }
   </style>
 </head>
@@ -101,21 +102,24 @@
 
     <a href="index.html" class="back">← Home</a>
 
-    <h1>Years</h1>
-
-    <div class="intro">
-      Explore memories through the years.
+    <div class="years">
+      <div class="year">2011</div>
+      <div class="year">2012</div>
+      <div class="year">2013</div>
+      <div class="year">2014</div>
+      <div class="year">2015</div>
+      <div class="year">2016</div>
+      <div class="year">2017</div>
+      <div class="year">2018</div>
+      <div class="year">2019</div>
+      <div class="year">2020</div>
+      <div class="year">2021</div>
+      <div class="year">2022</div>
+      <div class="year">2023</div>
+      <div class="year">2024</div>
+      <div class="year">2025</div>
+      <div class="year">2026</div>
     </div>
-
-    <div class="year">2026</div>
-    <div class="year">2025</div>
-    <div class="year">2024</div>
-    <div class="year">2023</div>
-    <div class="year">2022</div>
-    <div class="year">2021</div>
-    <div class="year">2020</div>
-    <div class="year">2019</div>
-    <div class="year">2018</div>
 
   </div>
 
