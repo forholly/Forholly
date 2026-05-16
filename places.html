@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Places · For Holly</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background: #000;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      min-height: 100vh;
+
+      background-image:
+        linear-gradient(
+          to right,
+          rgba(0,0,0,0.50) 0%,
+          rgba(0,0,0,0.22) 35%,
+          rgba(0,0,0,0.08) 60%,
+          rgba(0,0,0,0.12) 100%
+        ),
+        url('hero.jpg.jfif');
+
+      background-size: cover;
+      background-position: center center;
+    }
+
+    .container {
+      padding: 9vh 8%;
+      max-width: 900px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 60px;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: 0.25s ease;
+      font-size: 1rem;
+    }
+
+    .back:hover {
+      color: white;
+      transform: translateX(-4px);
+    }
+
+    h1 {
+      font-weight: 300;
+      font-size: 2.8rem;
+      margin-bottom: 18px;
+      text-shadow: 0 3px 16px rgba(0,0,0,0.3);
+    }
+
+    .intro {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 60px;
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    .section {
+      margin-bottom: 50px;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 18px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .place {
+      font-size: 1.2rem;
+      margin-bottom: 14px;
+      color: rgba(255,255,255,0.76);
+      cursor: pointer;
+      transition: 0.25s ease;
+      width: fit-content;
+    }
+
+    .place:hover {
+      color: white;
+      transform: translateX(6px);
+    }
+
+    .signature {
+      position: fixed;
+      bottom: 18px;
+      left: 24px;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.45);
+    }
+  </style>
+</head>
+
+<body>
+
+<section class="hero">
+
+  <div class="container">
+
+    <a href="index.html" class="back">← Home</a>
+
+    <h1>Places</h1>
+
+    <div class="intro">
+      Explore adventures, holidays, days out,
+      places around home and memories from around the world.
+    </div>
+
+    <div class="section">
+      <div class="section-title">Around Home</div>
+
+      <div class="place">Inverurie</div>
+      <div class="place">Aberdeen</div>
+      <div class="place">Cairngorms</div>
+      <div class="place">Days Out</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">The World</div>
+
+      <div class="place">Vietnam</div>
+      <div class="place">Thailand</div>
+      <div class="place">Tenerife</div>
+      <div class="place">Norway</div>
+    </div>
+
+  </div>
+
+  <div class="signature">
+    Created with love by Rob Hartshorn · 2026
+  </div>
+
+</section>
+
+</body>
+</html>
