@@ -6,9 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -20,7 +18,6 @@
 
     .hero {
       min-height: 100vh;
-
       background-image:
         linear-gradient(
           to right,
@@ -30,7 +27,6 @@
           rgba(0,0,0,0.12) 100%
         ),
         url('hero.jpg.jfif');
-
       background-size: cover;
       background-position: center center;
     }
@@ -53,6 +49,13 @@
       transform: translateX(-4px);
     }
 
+    h1 {
+      font-weight: 300;
+      font-size: 2.8rem;
+      margin-bottom: 35px;
+      text-shadow: 0 3px 16px rgba(0,0,0,0.3);
+    }
+
     .years {
       display: flex;
       flex-direction: column;
@@ -66,7 +69,6 @@
       color: rgba(255,255,255,0.78);
       cursor: pointer;
       transition: 0.25s ease;
-      letter-spacing: 0.2px;
     }
 
     .year:hover {
@@ -81,26 +83,17 @@
       font-size: 0.7rem;
       color: rgba(255,255,255,0.45);
     }
-
-    @media (max-width: 600px) {
-      .year {
-        font-size: 0.95rem;
-      }
-
-      .signature {
-        font-size: 0.6rem;
-      }
-    }
   </style>
 </head>
 
 <body>
 
 <section class="hero">
-
   <div class="container">
 
     <a href="index.html" class="back">← Home</a>
+
+    <h1>Years</h1>
 
     <div class="years">
       <div class="year">2011</div>
@@ -126,7 +119,6 @@
   <div class="signature">
     Created with love by Rob Hartshorn · 2026
   </div>
-
 </section>
 
 </body>
