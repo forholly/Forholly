@@ -22,15 +22,17 @@
       background-image:
         linear-gradient(
           to right,
-          rgba(0,0,0,0.50) 0%,
+          rgba(0,0,0,0.45) 0%,
           rgba(0,0,0,0.22) 35%,
           rgba(0,0,0,0.08) 60%,
           rgba(0,0,0,0.12) 100%
         ),
         url('attack.jpg.jfif');
 
-      background-size: 110%;
-      background-position: center top;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-color: #000;
     }
 
     .container {
@@ -91,11 +93,6 @@
         padding: 7vh 8%;
       }
 
-      .hero {
-        background-size: cover;
-        background-position: center center;
-      }
-
       h1 {
         font-size: 2rem;
       }
@@ -110,6 +107,11 @@
 
       .signature {
         font-size: 0.55rem;
+      }
+
+      .hero {
+        background-size: cover;
+        background-position: center center;
       }
     }
   </style>
