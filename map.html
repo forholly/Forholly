@@ -5,20 +5,18 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
+  <link rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
   <style>
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: Georgia, serif;
-      background: #000;
-      color: white;
       overflow: hidden;
+      background: #000;
+      font-family: Georgia, serif;
+      color: white;
     }
 
     #map {
@@ -26,14 +24,14 @@
       width: 100vw;
     }
 
-    /* KEEP pink sea, weird land */
+    /* EXPERIMENTAL COLOUR VIBE */
     .leaflet-tile {
       filter:
-        hue-rotate(115deg)
-        saturate(1.45)
-        brightness(0.86)
-        contrast(1.08)
-        sepia(0.15);
+        hue-rotate(95deg)
+        saturate(1.6)
+        brightness(0.92)
+        contrast(1.12)
+        sepia(0.35);
     }
 
     .overlay {
@@ -41,27 +39,21 @@
       top: 40px;
       left: 40px;
       z-index: 1000;
-      text-shadow: 0 3px 18px rgba(0,0,0,0.45);
+      text-shadow: 0 3px 16px rgba(0,0,0,0.45);
     }
 
     .back {
       display: inline-block;
       margin-bottom: 20px;
-      color: rgba(255,255,255,0.78);
+      color: rgba(255,255,255,0.75);
       text-decoration: none;
       font-size: 0.95rem;
-      transition: 0.25s ease;
-    }
-
-    .back:hover {
-      color: white;
-      transform: translateX(-4px);
     }
 
     h1 {
+      margin: 0;
       font-size: 2rem;
       font-weight: 300;
-      margin: 0;
     }
 
     .signature {
@@ -71,25 +63,6 @@
       z-index: 1000;
       font-size: 0.7rem;
       color: rgba(255,255,255,0.45);
-    }
-
-    @media (max-width: 600px) {
-      .overlay {
-        top: 25px;
-        left: 25px;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      .back {
-        font-size: 0.85rem;
-      }
-
-      .signature {
-        font-size: 0.55rem;
-      }
     }
   </style>
 </head>
@@ -104,63 +77,63 @@
 <div id="map"></div>
 
 <div class="signature">
-  Created with love by Rob Hartshorn · 2026
+Created with love by Rob Hartshorn · 2026
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-  const params = new URLSearchParams(window.location.search);
-  const mode = params.get("mode");
+const params = new URLSearchParams(window.location.search);
+const mode = params.get("mode");
 
-  const map = L.map('map', {
-    zoomControl: false,
-    worldCopyJump: false
-  });
+const map = L.map('map', {
+  zoomControl: false
+});
 
-  L.tileLayer(
-    'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
-    {
-      attribution: '&copy; OpenStreetMap',
-      noWrap: true
-    }
-  ).addTo(map);
+L.tileLayer(
+'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
+{
+  noWrap: true
+}
+).addTo(map);
 
-  L.tileLayer(
-    'https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png',
-    {
-      opacity: 0.30,
-      noWrap: true
-    }
-  ).addTo(map);
+L.tileLayer(
+'https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png',
+{
+  opacity: 0.28,
+  noWrap: true
+}
+).addTo(map);
 
-  if (mode === "plane") {
-    document.getElementById("map-title").textContent =
-      "Plane Required";
+if (mode === "plane") {
+  document.getElementById("map-title").textContent =
+  "Plane Required";
 
-    map.setView([20, 0], 2.3);
-  }
+  map.fitBounds([
+    [-60, -180],
+    [80, 180]
+  ]);
+}
 
-  else if (mode === "car") {
-    document.getElementById("map-title").textContent =
-      "Car Required";
+else if (mode === "car") {
+  document.getElementById("map-title").textContent =
+  "Car Required";
 
-    map.setView([56, -3], 6);
-  }
+  map.fitBounds([
+    [49, -9],
+    [60, 3]
+  ]);
+}
 
-  else if (mode === "legs") {
-    document.getElementById("map-title").textContent =
-      "Legs Required";
+else if (mode === "legs") {
+  document.getElementById("map-title").textContent =
+  "Legs Required";
 
-    map.setView([57.33, -2.38], 11.4);
-  }
-
-  else {
-    document.getElementById("map-title").textContent =
-      "Places";
-
-    map.setView([55, -3], 5);
-  }
+  map.fitBounds([
+    [57.10, -2.65],
+    [57.45, -2.00]
+  ]);
+}
 </script>
 
 </body>
