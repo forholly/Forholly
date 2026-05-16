@@ -12,85 +12,85 @@
       margin: 0;
       font-family: Georgia, serif;
       background: #f4dfe7;
-      color: #3b3b3b;
-      line-height: 1.7;
+      color: #383838;
+      overflow-x: hidden;
     }
 
     .container {
-      max-width: 950px;
+      max-width: 900px;
       margin: auto;
-      padding: 40px 24px 100px;
+      padding: 60px 30px 120px;
     }
 
     .hero {
       text-align: center;
-      padding: 90px 20px 70px;
+      margin-bottom: 80px;
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 5.8rem;
+      font-size: 6rem;
       font-weight: normal;
-      margin-bottom: 20px;
-      color: #2d2d2d;
+      margin-bottom: 10px;
+      color: #2c2c2c;
     }
 
     .subtitle {
-      font-size: 1.25rem;
-      color: #5c5c5c;
-      max-width: 650px;
-      margin: auto;
+      font-size: 1.2rem;
+      color: #555;
     }
 
-    .welcome-card {
-      background: rgba(255,255,255,0.45);
-      backdrop-filter: blur(10px);
-      border-radius: 28px;
-      padding: 35px;
-      margin-bottom: 60px;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.06);
+    .intro {
+      max-width: 620px;
+      margin: 0 auto 80px;
+      text-align: center;
+      color: #575757;
+      line-height: 1.9;
+      font-size: 1.08rem;
     }
 
-    .section-title {
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .item {
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding-bottom: 18px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .item:hover {
+      transform: translateX(8px);
+    }
+
+    .item-title {
       font-size: 2rem;
-      font-weight: normal;
-      margin-bottom: 25px;
-      color: #2f2f2f;
+      margin-bottom: 8px;
+      transition: color 0.3s ease;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
+    .item:hover .item-title {
+      color: #7a5163;
     }
 
-    .card {
-      background: rgba(255,255,255,0.85);
-      border-radius: 26px;
-      padding: 28px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      transition: transform 0.25s ease;
+    .item-text {
+      color: #5e5e5e;
+      max-width: 700px;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .emoji {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-
-    h3 {
-      margin-top: 0;
-      font-weight: normal;
-      font-size: 1.4rem;
+    .item:hover .item-text {
+      opacity: 1;
     }
 
     .footer {
       text-align: center;
-      margin-top: 90px;
-      color: #7a7a7a;
+      margin-top: 100px;
+      color: #777;
       font-size: 0.95rem;
     }
 
@@ -99,8 +99,8 @@
         font-size: 4rem;
       }
 
-      .hero {
-        padding-top: 60px;
+      .item-title {
+        font-size: 1.5rem;
       }
     }
   </style>
@@ -111,68 +111,49 @@
 <div class="container">
 
   <div class="hero">
-    <h1>❤️ For Holly ❤️</h1>
-
+    <h1>For Holly</h1>
     <p class="subtitle">
       A place for memories, adventures, moments.
     </p>
   </div>
 
-  <div class="welcome-card">
-    <h2>Welcome</h2>
-    <p>
-      A quiet place to keep memories safe.
-      The little things, the big adventures,
-      funny moments, photos, drawings,
-      places we explored, and things
-      worth remembering.
-    </p>
+  <div class="intro">
+    A quiet place to keep memories safe.
+    The little things, the big adventures,
+    funny moments, places explored,
+    photos, stories and things worth remembering.
   </div>
 
-  <h2 class="section-title">Explore</h2>
+  <div class="list">
 
-  <div class="grid">
-
-    <div class="card">
-      <div class="emoji">📷</div>
-      <h3>Memories</h3>
-      <p>
-        Photos, stories, voice notes
-        and moments that mattered.
-      </p>
+    <div class="item">
+      <div class="item-title">Memories</div>
+      <div class="item-text">
+        Photos, stories, voice notes and moments that mattered.
+      </div>
     </div>
 
-    <div class="card">
-      <div class="emoji">🌍</div>
-      <h3>Adventures</h3>
-      <p>
-        Holidays, day trips,
-        funny moments and places explored.
-      </p>
+    <div class="item">
+      <div class="item-title">Adventures</div>
+      <div class="item-text">
+        Holidays, trips, funny moments and places explored together.
+      </div>
     </div>
 
-    <div class="card">
-      <div class="emoji">🎨</div>
-      <h3>Holly’s Creations</h3>
-      <p>
-        School projects, drawings,
-        cards and little masterpieces.
-      </p>
+    <div class="item">
+      <div class="item-title">Holly’s Creations</div>
+      <div class="item-text">
+        Drawings, school projects, cards and little masterpieces.
+      </div>
     </div>
 
-    <div class="card">
-      <div class="emoji">🕰</div>
-      <h3>Timeline</h3>
-      <p>
-        Travel through memories
-        year by year.
-      </p>
+    <div class="item">
+      <div class="item-title">Timeline</div>
+      <div class="item-text">
+        Explore memories through the years.
+      </div>
     </div>
 
-  </div>
-
-  <div class="footer">
-    Built with love ❤️
   </div>
 
 </div>
