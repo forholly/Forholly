@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Map · For Holly</title>
+  <title>Places · For Holly</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
 
   <style>
     * { box-sizing: border-box; }
@@ -18,32 +13,40 @@
       font-family: Georgia, serif;
       background: #000;
       color: white;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
-    #map {
-      height: 100vh;
-      width: 100vw;
-      filter:
-        brightness(0.82)
-        contrast(1.08)
-        saturate(0.7);
+    .hero {
+      min-height: 100vh;
+
+      background-image:
+        linear-gradient(
+          to right,
+          rgba(0,0,0,0.45) 0%,
+          rgba(0,0,0,0.22) 35%,
+          rgba(0,0,0,0.08) 60%,
+          rgba(0,0,0,0.12) 100%
+        ),
+        url('colloseum.jpg.jfif');
+
+      background-size: 92%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-color: #000;
     }
 
-    .overlay {
-      position: absolute;
-      top: 40px;
-      left: 40px;
-      z-index: 1000;
+    .container {
+      padding: 9vh 8%;
+      max-width: 900px;
     }
 
     .back {
       display: inline-block;
-      margin-bottom: 20px;
-      color: rgba(255,255,255,0.7);
+      margin-bottom: 45px;
+      color: rgba(255,255,255,0.65);
       text-decoration: none;
-      font-size: 0.95rem;
       transition: 0.25s ease;
+      font-size: 0.95rem;
     }
 
     .back:hover {
@@ -52,37 +55,68 @@
     }
 
     h1 {
-      font-size: 2rem;
       font-weight: 300;
-      margin: 0;
-      text-shadow: 0 3px 16px rgba(0,0,0,0.4);
+      font-size: 2.8rem;
+      margin-bottom: 35px;
+      text-shadow: 0 3px 16px rgba(0,0,0,0.3);
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .item {
+      width: fit-content;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.82);
+      cursor: pointer;
+      transition: 0.28s ease;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+      text-decoration: none;
+    }
+
+    .item:hover {
+      transform: translateX(6px);
+      color: white;
     }
 
     .signature {
       position: fixed;
       bottom: 18px;
       left: 24px;
-      z-index: 1000;
       font-size: 0.7rem;
       color: rgba(255,255,255,0.45);
     }
 
     @media (max-width: 600px) {
-      .overlay {
-        top: 25px;
-        left: 25px;
+      .container {
+        padding: 7vh 8%;
       }
 
       h1 {
-        font-size: 1.5rem;
+        font-size: 2rem;
+        margin-bottom: 24px;
+      }
+
+      .item {
+        font-size: 1rem;
       }
 
       .back {
         font-size: 0.85rem;
+        margin-bottom: 30px;
       }
 
       .signature {
         font-size: 0.55rem;
+      }
+
+      .hero {
+        background-size: cover;
+        background-position: center center;
       }
     }
   </style>
@@ -90,62 +124,35 @@
 
 <body>
 
-<div class="overlay">
-  <a href="places.html" class="back">← Places</a>
-  <h1 id="map-title">Places</h1>
-</div>
+<section class="hero">
+  <div class="container">
 
-<div id="map"></div>
+    <a href="index.html" class="back">← Home</a>
 
-<div class="signature">
-  Created with love by Rob Hartshorn · 2026
-</div>
+    <h1>Places</h1>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <div class="list">
+      <div class="item">No Legs Required</div>
 
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const mode = params.get("mode");
+      <a href="map.html?mode=legs" class="item">
+        Legs Required
+      </a>
 
-  const map = L.map('map', {
-    zoomControl: false
-  });
+      <a href="map.html?mode=car" class="item">
+        Car Required
+      </a>
 
-  L.tileLayer(
-    'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-    {
-      attribution: '&copy; OpenStreetMap'
-    }
-  ).addTo(map);
+      <a href="map.html?mode=plane" class="item">
+        Plane Required
+      </a>
+    </div>
 
-  if (mode === "plane") {
-    document.getElementById("map-title").textContent =
-      "Plane Required";
+  </div>
 
-    map.setView([20, 10], 2);
-  }
-
-  else if (mode === "car") {
-    document.getElementById("map-title").textContent =
-      "Car Required";
-
-    map.setView([55, -3], 5);
-  }
-
-  else if (mode === "legs") {
-    document.getElementById("map-title").textContent =
-      "Legs Required";
-
-    map.setView([57.286, -2.377], 11);
-  }
-
-  else {
-    document.getElementById("map-title").textContent =
-      "Places";
-
-    map.setView([54, -3], 4);
-  }
-</script>
+  <div class="signature">
+    Created with love by Rob Hartshorn · 2026
+  </div>
+</section>
 
 </body>
 </html>
