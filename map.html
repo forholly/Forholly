@@ -32,9 +32,126 @@
       top: 24px;
       left: 24px;
       z-index: 1000;
-
       color: rgba(255,255,255,0.78);
       text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .signature {
+      position: fixed;
+      bottom: 18px;
+      left: 24px;
+      z-index: 1000;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* custom subtle pin */
+    .memory-pin {
+      width: 18px;
+      height: 18px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      box-shadow:
+        0 0 12px rgba(255,255,255,0.5),
+        0 0 28px rgba(140,180,255,0.35);
+      border: 2px solid rgba(255,255,255,0.8);
+    }
+
+    .leaflet-popup-content-wrapper {
+      background: rgba(20,20,20,0.95);
+      color: white;
+      border-radius: 12px;
+      font-family: Georgia, serif;
+    }
+
+    .leaflet-popup-tip {
+      background: rgba(20,20,20,0.95);
+    }
+
+    @media (max-width: 600px) {
+      .home {
+        font-size: 0.9rem;
+      }
+
+      .signature {
+        font-size: 0.55rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<a href="index.html" class="home">
+  ← Home
+</a>
+
+<div id="map"></div>
+
+<div class="signature">
+  Created with love by Rob Hartshorn · 2026
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  const map = L.map("map", {
+    zoomControl: false,
+    attributionControl: false,
+    worldCopyJump: false
+  });
+
+  L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",
+    {
+      subdomains: "abcd",
+      noWrap: true
+    }
+  ).addTo(map);
+
+  const pane = map.createPane('tintPane');
+  pane.style.zIndex = 350;
+  pane.style.mixBlendMode = 'multiply';
+
+  L.rectangle(
+    [[-90,-180],[90,180]],
+    {
+      pane: 'tintPane',
+      color: '#2a5f73',
+      fillColor: '#2a5f73',
+      fillOpacity: 0.28,
+      stroke: false
+    }
+  ).addTo(map);
+
+  L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png",
+    {
+      opacity: 0.28,
+      subdomains: "abcd"
+    }
+  ).addTo(map);
+
+  // Rome pin
+  const romeIcon = L.divIcon({
+    className: '',
+    html: '<div class="memory-pin"></div>',
+    iconSize: [18, 18],
+    iconAnchor: [9, 9]
+  });
+
+  L.marker([41.9028, 12.4964], {
+    icon: romeIcon
+  })
+  .addTo(map)
+  .bindPopup("Rome");
+
+  map.setView([56, -3], 5.8);
+</script>
+
+</body>
+</html>      text-decoration: none;
       font-size: 1rem;
     }
 
