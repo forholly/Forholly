@@ -26,14 +26,13 @@
       width: 100vw;
     }
 
-    /* Dreamy atlas colours */
+    /* Dreamy pink sea / strange land */
     .leaflet-tile {
       filter:
-        hue-rotate(145deg)
-        saturate(0.7)
-        brightness(0.92)
-        contrast(0.95)
-        sepia(0.18);
+        hue-rotate(115deg)
+        saturate(1.25)
+        brightness(0.82)
+        contrast(1.05);
     }
 
     .overlay {
@@ -118,7 +117,7 @@
     worldCopyJump: false
   });
 
-  /* Cleaner, less cluttered map */
+  /* No roads clutter */
   L.tileLayer(
     'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
     {
@@ -127,12 +126,11 @@
     }
   ).addTo(map);
 
-  /* Major labels only */
+  /* Only major labels */
   L.tileLayer(
     'https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png',
     {
-      pane: 'shadowPane',
-      opacity: 0.45,
+      opacity: 0.32,
       noWrap: true
     }
   ).addTo(map);
@@ -148,14 +146,14 @@
     document.getElementById("map-title").textContent =
       "Car Required";
 
-    map.setView([56, -3], 5.8);
+    map.setView([56, -3], 6);
   }
 
   else if (mode === "legs") {
     document.getElementById("map-title").textContent =
       "Legs Required";
 
-    map.setView([57.33, -2.38], 10.8);
+    map.setView([57.33, -2.38], 11.4);
   }
 
   else {
