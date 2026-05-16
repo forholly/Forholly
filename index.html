@@ -15,7 +15,6 @@
     body {
       margin: 0;
       font-family: Georgia, serif;
-      color: white;
       overflow-x: hidden;
       background: #000;
     }
@@ -23,25 +22,28 @@
     .hero {
       position: relative;
       min-height: 100vh;
+
       background-image:
         linear-gradient(
           to right,
-          rgba(0,0,0,0.45) 0%,
-          rgba(0,0,0,0.18) 35%,
+          rgba(0,0,0,0.50) 0%,
+          rgba(0,0,0,0.30) 30%,
           rgba(0,0,0,0.08) 60%,
           rgba(0,0,0,0.12) 100%
         ),
-        url('hero.jpg');
+        url('hero.jpg.jfif');
 
       background-size: cover;
-      background-position: center;
+      background-position: center center;
+
       display: flex;
       align-items: center;
     }
 
     .content {
       padding-left: 8%;
-      max-width: 650px;
+      max-width: 600px;
+      color: white;
     }
 
     h1 {
@@ -49,29 +51,28 @@
       font-size: 7rem;
       font-weight: normal;
       margin: 0 0 10px;
-      text-shadow: 0 3px 18px rgba(0,0,0,0.35);
+      text-shadow: 0 4px 20px rgba(0,0,0,0.35);
     }
 
     .subtitle {
-      font-size: 1.2rem;
-      color: rgba(255,255,255,0.9);
-      margin-bottom: 70px;
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 60px;
       letter-spacing: 0.5px;
     }
 
     .list {
       display: flex;
       flex-direction: column;
-      gap: 26px;
-      max-width: 400px;
+      gap: 28px;
     }
 
     .item {
+      width: fit-content;
       font-size: 2rem;
       color: rgba(255,255,255,0.82);
       cursor: pointer;
       transition: all 0.28s ease;
-      width: fit-content;
     }
 
     .item:hover {
@@ -116,6 +117,7 @@
 <body>
 
 <section class="hero">
+
   <div class="content">
 
     <h1>For Holly</h1>
@@ -132,6 +134,7 @@
     </div>
 
   </div>
+
 </section>
 
 </body>
