@@ -13,7 +13,7 @@
       font-family: Georgia, serif;
       background: #000;
       color: white;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     .hero {
@@ -22,14 +22,14 @@
       background-image:
         linear-gradient(
           to right,
-          rgba(0,0,0,0.42) 0%,
+          rgba(0,0,0,0.45) 0%,
           rgba(0,0,0,0.22) 35%,
           rgba(0,0,0,0.08) 60%,
           rgba(0,0,0,0.12) 100%
         ),
         url('colloseum.jpg.jfif');
 
-      background-size: 105%;
+      background-size: 92%;
       background-position: center center;
       background-repeat: no-repeat;
       background-color: #000;
@@ -57,13 +57,83 @@
     h1 {
       font-weight: 300;
       font-size: 2.8rem;
-      margin: 0;
+      margin-bottom: 35px;
       text-shadow: 0 3px 16px rgba(0,0,0,0.3);
+    }
+
+    .open-map {
+      display: inline-block;
+      margin-top: 10px;
+      color: rgba(255,255,255,0.82);
+      text-decoration: none;
+      font-size: 1.3rem;
+      font-weight: 300;
+      transition: 0.28s ease;
+    }
+
+    .open-map:hover {
+      transform: translateX(6px);
+      color: white;
     }
 
     .signature {
       position: fixed;
       bottom: 18px;
+      left: 24px;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 7vh 8%;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .open-map {
+        font-size: 1rem;
+      }
+
+      .back {
+        font-size: 0.85rem;
+      }
+
+      .signature {
+        font-size: 0.55rem;
+      }
+
+      .hero {
+        background-size: cover;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<section class="hero">
+  <div class="container">
+
+    <a href="index.html" class="back">← Home</a>
+
+    <h1>Places</h1>
+
+    <a href="map.html" class="open-map">
+      Open Map
+    </a>
+
+  </div>
+
+  <div class="signature">
+    Created with love by Rob Hartshorn · 2026
+  </div>
+</section>
+
+</body>
+</html>      bottom: 18px;
       left: 24px;
       font-size: 0.7rem;
       color: rgba(255,255,255,0.45);
