@@ -13,7 +13,7 @@
     body {
       margin: 0;
       overflow: hidden;
-      background: #05070a;
+      background: #0c1016;
       font-family: Georgia, serif;
       color: white;
     }
@@ -33,7 +33,7 @@
     .back {
       display: inline-block;
       margin-bottom: 20px;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.78);
       text-decoration: none;
       font-size: 0.95rem;
     }
@@ -88,7 +88,7 @@
 <div id="globeViz"></div>
 
 <div class="signature">
-  Created with love by Rob Hartshorn · 2026
+Created with love by Rob Hartshorn · 2026
 </div>
 
 <script>
@@ -97,13 +97,15 @@ const mode = params.get("mode");
 
 const globe = Globe()
 (document.getElementById('globeViz'))
+
 .globeImageUrl(
-'https://unpkg.com/three-globe/example/img/earth-dark.jpg'
+'https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg'
 )
-.backgroundColor('#05070a')
+
+.backgroundColor('#0c1016')
 .showAtmosphere(true)
-.atmosphereColor('#6d8cff')
-.atmosphereAltitude(0.18);
+.atmosphereColor('#7ea2ff')
+.atmosphereAltitude(0.14);
 
 if (mode === "plane") {
 
@@ -111,11 +113,10 @@ if (mode === "plane") {
     .textContent = "Plane Required";
 
   globe.pointOfView({
-    lat: 20,
+    lat: 15,
     lng: 0,
-    altitude: 2.2
-  });
-
+    altitude: 2.5
+  }, 1200);
 }
 
 else if (mode === "car") {
@@ -126,9 +127,8 @@ else if (mode === "car") {
   globe.pointOfView({
     lat: 55,
     lng: -3,
-    altitude: 0.8
+    altitude: 0.65
   }, 1500);
-
 }
 
 else if (mode === "legs") {
@@ -137,21 +137,19 @@ else if (mode === "legs") {
     .textContent = "Legs Required";
 
   globe.pointOfView({
-    lat: 57.3,
-    lng: -2.3,
-    altitude: 0.15
-  }, 1500);
-
+    lat: 57.33,
+    lng: -2.38,
+    altitude: 0.08
+  }, 1800);
 }
 
 else {
 
   globe.pointOfView({
-    lat: 54,
-    lng: -3,
-    altitude: 1.4
+    lat: 30,
+    lng: 0,
+    altitude: 1.5
   });
-
 }
 </script>
 
