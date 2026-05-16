@@ -27,14 +27,90 @@
       width: 100vw;
     }
 
-    /* teal / green memory-atlas colours */
+    /* keep land similar, deepen sea contrast */
     .leaflet-tile {
       filter:
-        hue-rotate(210deg)
-        saturate(1.2)
-        brightness(0.72)
+        hue-rotate(180deg)
+        saturate(0.95)
+        brightness(0.68)
         contrast(1.12);
     }
+
+    .home {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      z-index: 1000;
+
+      color: rgba(255,255,255,0.78);
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .signature {
+      position: fixed;
+      bottom: 18px;
+      left: 24px;
+      z-index: 1000;
+
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    @media (max-width: 600px) {
+      .home {
+        font-size: 0.9rem;
+      }
+
+      .signature {
+        font-size: 0.55rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<a href="index.html" class="home">
+  ← Home
+</a>
+
+<div id="map"></div>
+
+<div class="signature">
+  Created with love by Rob Hartshorn · 2026
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  const map = L.map("map", {
+    zoomControl: false,
+    attributionControl: false,
+    worldCopyJump: false
+  });
+
+  L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",
+    {
+      subdomains: "abcd",
+      noWrap: true
+    }
+  ).addTo(map);
+
+  L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png",
+    {
+      opacity: 0.35,
+      subdomains: "abcd"
+    }
+  ).addTo(map);
+
+  map.setView([56, -3], 5.8);
+</script>
+
+</body>
+</html>    }
 
     .home {
       position: absolute;
