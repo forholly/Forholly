@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Map · For Holly</title>
+  <title>For Holly</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,14 +11,15 @@
   />
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
-      font-family: Georgia, serif;
       overflow: hidden;
       background: #1b1b1b;
-      color: white;
+      font-family: Georgia, serif;
     }
 
     #map {
@@ -26,7 +27,7 @@
       width: 100vw;
     }
 
-    /* dreamy recolour */
+    /* dreamy muted colours */
     .leaflet-tile {
       filter:
         hue-rotate(145deg)
@@ -35,6 +36,90 @@
         contrast(1.05);
     }
 
+    .back {
+      position: absolute;
+      top: 28px;
+      left: 28px;
+      z-index: 1000;
+
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: 0.25s ease;
+    }
+
+    .back:hover {
+      color: white;
+      transform: translateX(-4px);
+    }
+
+    .signature {
+      position: fixed;
+      bottom: 18px;
+      left: 24px;
+      z-index: 1000;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    @media (max-width: 600px) {
+      .back {
+        top: 24px;
+        left: 24px;
+        font-size: 0.9rem;
+      }
+
+      .signature {
+        font-size: 0.55rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<a href="index.html" class="back">
+  ← Home
+</a>
+
+<div id="map"></div>
+
+<div class="signature">
+  Created with love by Rob Hartshorn · 2026
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  const map = L.map("map", {
+    zoomControl: false,
+    attributionControl: false,
+    worldCopyJump: false
+  });
+
+  L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",
+    {
+      subdomains: "abcd",
+      maxZoom: 18,
+      noWrap: true
+    }
+  ).addTo(map);
+
+  L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png",
+    {
+      opacity: 0.35,
+      subdomains: "abcd"
+    }
+  ).addTo(map);
+
+  /* default opening view */
+  map.setView([56, -3], 5.8);
+</script>
+
+</body>
+</html>
     .overlay {
       position: absolute;
       top: 40px;
