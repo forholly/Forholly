@@ -50,10 +50,6 @@
       position: relative;
       width: 100vw;
       height: 100vh;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
     }
 
@@ -66,10 +62,11 @@
       justify-content: center;
 
       opacity: 0;
-      transform: translateX(50px);
+      transform: translateX(120px) scale(0.985);
+
       transition:
-        opacity 0.45s ease,
-        transform 0.45s ease;
+        transform 1.2s ease,
+        opacity 1.2s ease;
 
       pointer-events: none;
       padding: 90px 24px 40px;
@@ -77,14 +74,16 @@
 
     .slide.active {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateX(0) scale(1);
       pointer-events: auto;
     }
 
     .photo {
-      width: min(92vw, 950px);
-      height: min(80vh, 850px);
+      width: min(88vw, 820px);
+      height: min(76vh, 720px);
+
       object-fit: contain;
+      object-position: center;
 
       border-radius: 22px;
       display: block;
@@ -95,16 +94,16 @@
       top: 50%;
       transform: translateY(-50%);
 
-      background: rgba(255,255,255,0.08);
-      border: none;
-      backdrop-filter: blur(6px);
-
       width: 52px;
       height: 52px;
       border-radius: 50%;
 
-      color: rgba(255,255,255,0.85);
-      font-size: 1.6rem;
+      border: none;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+
+      color: rgba(255,255,255,0.82);
+      font-size: 1.5rem;
       cursor: pointer;
       z-index: 1000;
 
@@ -113,6 +112,7 @@
 
     .arrow:hover {
       background: rgba(255,255,255,0.14);
+      transform: translateY(-50%) scale(1.05);
     }
 
     .left {
@@ -128,22 +128,21 @@
       bottom: 22px;
       left: 50%;
       transform: translateX(-50%);
-
-      color: rgba(255,255,255,0.42);
+      color: rgba(255,255,255,0.38);
       font-size: 0.72rem;
     }
 
     @media (max-width: 600px) {
       .photo {
-        width: 94vw;
-        height: 74vh;
+        width: 92vw;
+        height: 70vh;
         border-radius: 18px;
       }
 
       .arrow {
         width: 42px;
         height: 42px;
-        font-size: 1.2rem;
+        font-size: 1.15rem;
       }
 
       .left {
@@ -202,15 +201,24 @@ const slides = document.querySelectorAll(".slide");
 const counter = document.getElementById("counter");
 
 let current = 0;
+let busy = false;
 
 function showSlide(index) {
+  if (busy) return;
+  busy = true;
+
   slides.forEach(slide => {
     slide.classList.remove("active");
   });
 
-  slides[index].classList.add("active");
+  setTimeout(() => {
+    slides[index].classList.add("active");
+    counter.textContent = `${index + 1} / ${slides.length}`;
+  }, 120);
 
-  counter.textContent = `${index + 1} / ${slides.length}`;
+  setTimeout(() => {
+    busy = false;
+  }, 1200);
 }
 
 function changeSlide(direction) {
@@ -227,7 +235,7 @@ function changeSlide(direction) {
   showSlide(current);
 }
 
-/* swipe support */
+/* swipe */
 let startX = 0;
 
 document.addEventListener("touchstart", e => {
