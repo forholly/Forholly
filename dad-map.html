@@ -25,16 +25,31 @@
     #map {
       height: 100vh;
       width: 100vw;
+
+      filter:
+        saturate(1.15)
+        brightness(0.98)
+        contrast(1.08);
     }
 
-    .home {
+    .home-wrap {
       position: absolute;
       top: 24px;
       left: 24px;
       z-index: 1000;
+    }
+
+    .home {
       color: rgba(255,255,255,0.78);
       text-decoration: none;
       font-size: 1rem;
+      display: block;
+    }
+
+    .country-count {
+      margin-top: 5px;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.52);
     }
 
     .signature {
@@ -60,6 +75,10 @@
         font-size: 0.9rem;
       }
 
+      .country-count {
+        font-size: 0.62rem;
+      }
+
       .signature {
         font-size: 0.55rem;
       }
@@ -69,9 +88,15 @@
 
 <body>
 
-<a href="index.html" class="home">
-  ← Home
-</a>
+<div class="home-wrap">
+  <a href="index.html" class="home">
+    ← Home
+  </a>
+
+  <div class="country-count">
+    Countries visited · 33
+  </div>
+</div>
 
 <div id="map"></div>
 
@@ -132,24 +157,21 @@ function addPin(lat, lng) {
   }).addTo(map);
 }
 
-// Original
-addPin(41.9028, 12.4964); // Rome
-addPin(52.3676, 4.9041); // Amsterdam
-addPin(54.3520, 18.6466); // Gdansk
-addPin(52.5200, 13.4050); // Berlin
-addPin(50.7350, -1.7830); // Highcliffe
-addPin(57.1475, -2.0954); // Aberdeen
-addPin(57.2842, -2.3776); // Inverurie
-addPin(57.3348, -2.3202); // Oldmeldrum
-
-// Shared
-addPin(55.9533, -3.1883); // Edinburgh
-addPin(57.1950, -3.8260); // Aviemore
-addPin(36.5390, -4.6244); // Fuengirola
-addPin(51.5072, -0.1276); // London
-addPin(34.7754, 32.4245); // Cyprus
-addPin(57.1440, -4.6817); // Caledonian Canal
-addPin(52.1364, -0.4667); // Bedford
+addPin(41.9028, 12.4964);
+addPin(52.3676, 4.9041);
+addPin(54.3520, 18.6466);
+addPin(52.5200, 13.4050);
+addPin(50.7350, -1.7830);
+addPin(57.1475, -2.0954);
+addPin(57.2842, -2.3776);
+addPin(57.3348, -2.3202);
+addPin(55.9533, -3.1883);
+addPin(57.1950, -3.8260);
+addPin(36.5390, -4.6244);
+addPin(51.5072, -0.1276);
+addPin(34.7754, 32.4245);
+addPin(57.1440, -4.6817);
+addPin(52.1364, -0.4667);
 
 map.setView([56, -3], 5.8);
 </script>
