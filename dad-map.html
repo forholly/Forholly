@@ -124,15 +124,15 @@ L.tileLayer(
 
 const pane = map.createPane("tintPane");
 pane.style.zIndex = 350;
-pane.style.mixBlendMode = "multiply";
+pane.style.mixBlendMode = "soft-light";
 
 L.rectangle(
   [[-90, -180], [90, 180]],
   {
     pane: "tintPane",
-    color: "#b89b4a",
-    fillColor: "#b89b4a",
-    fillOpacity: 0.10,
+    color: "#2a5f73",
+    fillColor: "#2a5f73",
+    fillOpacity: 0.14,
     stroke: false
   }
 ).addTo(map);
