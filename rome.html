@@ -12,14 +12,16 @@
 
     html, body {
       margin: 0;
-      padding: 0;
+      height: 100%;
+      overflow: hidden;
       background: #111;
       font-family: Georgia, serif;
       color: white;
     }
 
     body {
-      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     .top-bar {
@@ -42,32 +44,48 @@
       letter-spacing: 0.03em;
     }
 
-    .gallery {
-      width: 100%;
+    .slider {
+      height: 100vh;
       display: flex;
-      flex-direction: column;
-      gap: 20px;
-      padding: 90px 0 50px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+
+      -webkit-overflow-scrolling: touch;
     }
 
-    .photo-wrap {
-      width: 100%;
+    .slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {
+      min-width: 100vw;
+      height: 100vh;
+
       display: flex;
+      align-items: center;
       justify-content: center;
+
+      scroll-snap-align: center;
+      padding: 80px 20px 40px;
     }
 
     .photo {
-      width: min(92vw, 850px);
-      height: auto;
-      border-radius: 18px;
+      max-width: min(92vw, 900px);
+      max-height: 82vh;
+
+      border-radius: 22px;
+      object-fit: contain;
       display: block;
     }
 
-    .signature {
-      text-align: center;
-      font-size: 0.65rem;
-      color: rgba(255,255,255,0.35);
-      padding: 30px 0 40px;
+    .hint {
+      position: fixed;
+      bottom: 18px;
+      right: 24px;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.32);
+      z-index: 1000;
     }
 
     @media (max-width: 600px) {
@@ -79,14 +97,19 @@
         font-size: 0.72rem;
       }
 
-      .gallery {
-        gap: 14px;
-        padding-top: 80px;
+      .slide {
+        padding: 80px 12px 30px;
       }
 
       .photo {
-        width: 96vw;
-        border-radius: 14px;
+        max-width: 96vw;
+        max-height: 78vh;
+        border-radius: 16px;
+      }
+
+      .hint {
+        font-size: 0.55rem;
+        right: 18px;
       }
     }
   </style>
@@ -104,24 +127,24 @@
   </div>
 </div>
 
-<div class="gallery">
+<div class="slider">
 
-  <div class="photo-wrap">
+  <section class="slide">
     <img src="rome1.jfif" class="photo" alt="Rome photo 1">
-  </div>
+  </section>
 
-  <div class="photo-wrap">
+  <section class="slide">
     <img src="rome2.jfif" class="photo" alt="Rome photo 2">
-  </div>
+  </section>
 
-  <div class="photo-wrap">
+  <section class="slide">
     <img src="rome3.jfif" class="photo" alt="Rome photo 3">
-  </div>
+  </section>
 
 </div>
 
-<div class="signature">
-  Created with love by Rob Hartshorn · 2026
+<div class="hint">
+  ← swipe →
 </div>
 
 </body>
