@@ -18,7 +18,7 @@
     body {
       margin: 0;
       overflow: hidden;
-      background: #111;
+      background: #181416;
       font-family: Georgia, serif;
     }
 
@@ -27,13 +27,13 @@
       width: 100vw;
     }
 
-    /* force pink land tint */
+    /* softer controlled tint */
     .leaflet-tile {
       filter:
-        sepia(0.9)
-        hue-rotate(-35deg)
-        saturate(5)
-        brightness(1.08);
+        sepia(0.22)
+        hue-rotate(-18deg)
+        saturate(1.7)
+        brightness(1.02);
     }
 
     .home {
@@ -58,10 +58,10 @@
     .memory-pin {
       width: 8px;
       height: 8px;
-      background: #ff77aa;
+      background: #ff7cad;
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.35);
-      box-shadow: 0 0 5px rgba(255,119,170,0.25);
+      box-shadow: 0 0 4px rgba(255,124,173,0.18);
     }
 
     @media (max-width: 600px) {
