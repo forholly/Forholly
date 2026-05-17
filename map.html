@@ -23,6 +23,7 @@
     #map {
       height: 100vh;
       width: 100vw;
+
       filter:
         hue-rotate(-95deg)
         saturate(2.8)
@@ -67,7 +68,9 @@
 
 <body>
 
-<a href="index.html" class="home">← Home</a>
+<a href="index.html" class="home">
+  ← Home
+</a>
 
 <div id="map"></div>
 
@@ -112,20 +115,22 @@ function addPin(lat, lng, page = null) {
 }
 
 // Existing
-addPin(41.9028, 12.4964, "rome.html");
-addPin(52.3676, 4.9041);
-addPin(54.3520, 18.6466);
-addPin(52.5200, 13.4050);
-addPin(50.7350, -1.7830, "highcliffe.html");
-addPin(57.1475, -2.0954);
-addPin(57.2842, -2.3776);
-addPin(57.3348, -2.3202);
-
-// New
+addPin(41.9028, 12.4964, "rome.html"); // Rome
+addPin(52.3676, 4.9041); // Amsterdam
+addPin(54.3520, 18.6466); // Gdansk
+addPin(52.5200, 13.4050); // Berlin
+addPin(50.7350, -1.7830, "highcliffe.html"); // Highcliffe
+addPin(57.1475, -2.0954); // Aberdeen
+addPin(57.2842, -2.3776); // Inverurie
+addPin(57.3348, -2.3202); // Oldmeldrum
 addPin(55.9533, -3.1883); // Edinburgh
 addPin(57.1950, -3.8260); // Aviemore
 addPin(36.5390, -4.6244); // Fuengirola
 addPin(51.5072, -0.1276); // London
+
+// New
+addPin(34.7754, 32.4245); // Cyprus (Paphos placeholder)
+addPin(57.1440, -4.6817); // Caledonian Canal / Loch Ness
 
 map.setView([56, -3], 5.8);
 </script>
