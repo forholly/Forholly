@@ -29,10 +29,7 @@
 
       background-size: cover;
       background-position: center center;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
+      position: relative;
       padding: 7vh 8%;
     }
 
@@ -56,17 +53,21 @@
       transform: translateX(6px);
     }
 
-    .dad-section {
-      margin-top: 26px;
+    .dad-link {
+      position: absolute;
+      left: 8%;
+      bottom: 8vh;
+
+      color: rgba(255,255,255,0.58);
+      text-decoration: none;
+      font-size: 1.08rem;
+      font-weight: 300;
+      transition: 0.25s ease;
     }
 
-    .dad-section a {
-      font-size: 1.18rem;
-      color: rgba(255,255,255,0.62);
-    }
-
-    .dad-section a:hover {
+    .dad-link:hover {
       color: rgba(255,255,255,0.82);
+      transform: translateX(4px);
     }
 
     .signature {
@@ -86,12 +87,9 @@
         font-size: 1.1rem;
       }
 
-      .dad-section {
-        margin-top: 22px;
-      }
-
-      .dad-section a {
-        font-size: 0.95rem;
+      .dad-link {
+        bottom: 7vh;
+        font-size: 0.9rem;
       }
 
       .signature {
@@ -109,11 +107,11 @@
     <a href="map.html">Places</a>
     <a href="years.html">Years</a>
     <a href="creations.html">Creations</a>
-
-    <div class="dad-section">
-      <a href="dad-map.html">Dad’s Travels</a>
-    </div>
   </div>
+
+  <a href="dad-map.html" class="dad-link">
+    Dad’s Travels
+  </a>
 
 </section>
 
