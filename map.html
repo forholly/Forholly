@@ -18,7 +18,7 @@
     body {
       margin: 0;
       overflow: hidden;
-      background: #171313;
+      background: #1b1416;
       font-family: Georgia, serif;
     }
 
@@ -49,10 +49,10 @@
     .memory-pin {
       width: 8px;
       height: 8px;
-      background: #d7b278;
+      background: #ddb37e;
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.35);
-      box-shadow: 0 0 4px rgba(215,178,120,0.22);
+      box-shadow: 0 0 4px rgba(221,179,126,0.22);
     }
 
     @media (max-width: 600px) {
@@ -96,7 +96,7 @@
     }
   ).addTo(map);
 
-  // Pink memory tint
+  // stronger pink memory tint
   const pane = map.createPane("tintPane");
   pane.style.zIndex = 350;
   pane.style.mixBlendMode = "multiply";
@@ -105,9 +105,9 @@
     [[-90, -180], [90, 180]],
     {
       pane: "tintPane",
-      color: "#9b5d73",
-      fillColor: "#9b5d73",
-      fillOpacity: 0.26,
+      color: "#c96d8f",
+      fillColor: "#c96d8f",
+      fillOpacity: 0.38,
       stroke: false
     }
   ).addTo(map);
@@ -115,7 +115,7 @@
   L.tileLayer(
     "https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png",
     {
-      opacity: 0.28,
+      opacity: 0.24,
       subdomains: "abcd"
     }
   ).addTo(map);
