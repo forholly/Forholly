@@ -11,7 +11,9 @@
   />
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -60,8 +62,13 @@
     }
 
     @media (max-width: 600px) {
-      .home { font-size: 0.9rem; }
-      .signature { font-size: 0.55rem; }
+      .home {
+        font-size: 0.9rem;
+      }
+
+      .signature {
+        font-size: 0.55rem;
+      }
     }
   </style>
 </head>
@@ -98,8 +105,8 @@ L.tileLayer(
 const memoryIcon = L.divIcon({
   className: "",
   html: '<div class="memory-pin"></div>',
-  iconSize: [8,8],
-  iconAnchor: [4,4]
+  iconSize: [8, 8],
+  iconAnchor: [4, 4]
 });
 
 function addPin(lat, lng, page = null) {
@@ -123,14 +130,15 @@ addPin(50.7350, -1.7830, "highcliffe.html"); // Highcliffe
 addPin(57.1475, -2.0954); // Aberdeen
 addPin(57.2842, -2.3776); // Inverurie
 addPin(57.3348, -2.3202); // Oldmeldrum
+
+// Shared additions
 addPin(55.9533, -3.1883); // Edinburgh
 addPin(57.1950, -3.8260); // Aviemore
 addPin(36.5390, -4.6244); // Fuengirola
 addPin(51.5072, -0.1276); // London
-
-// New
 addPin(34.7754, 32.4245); // Cyprus (Paphos placeholder)
 addPin(57.1440, -4.6817); // Caledonian Canal / Loch Ness
+addPin(52.1364, -0.4667); // Bedford
 
 map.setView([56, -3], 5.8);
 </script>
