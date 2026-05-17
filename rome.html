@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rome · For Holly</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+      font-family: Georgia, serif;
+    }
+
+    .hero {
+      height: 100vh;
+      width: 100vw;
+
+      background-image:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.10),
+          rgba(0,0,0,0.22)
+        ),
+        url('colloseum.jpg.jfif');
+
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+
+      position: relative;
+    }
+
+    .back {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+
+      color: rgba(255,255,255,0.82);
+      text-decoration: none;
+      font-size: 1rem;
+      z-index: 1000;
+    }
+
+    .signature {
+      position: absolute;
+      bottom: 18px;
+      left: 24px;
+
+      color: rgba(255,255,255,0.45);
+      font-size: 0.7rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        background-position: center center;
+      }
+
+      .back {
+        font-size: 0.9rem;
+      }
+
+      .signature {
+        font-size: 0.55rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="hero">
+
+  <a href="map.html" class="back">
+    ← Map
+  </a>
+
+  <div class="signature">
+    Created with love by Rob Hartshorn · 2026
+  </div>
+
+</div>
+
+</body>
+</html>
