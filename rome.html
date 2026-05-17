@@ -20,12 +20,6 @@
       touch-action: pan-y;
     }
 
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
     .top-bar {
       position: fixed;
       top: 24px;
@@ -58,15 +52,15 @@
       inset: 0;
 
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
 
       opacity: 0;
-      transform: translateX(120px) scale(0.985);
+      transform: translateX(80px);
 
       transition:
-        transform 1.2s ease,
-        opacity 1.2s ease;
+        opacity 2.2s ease,
+        transform 2.2s ease;
 
       pointer-events: none;
       padding: 90px 24px 40px;
@@ -74,18 +68,26 @@
 
     .slide.active {
       opacity: 1;
-      transform: translateX(0) scale(1);
+      transform: translateX(0);
       pointer-events: auto;
+      z-index: 2;
+    }
+
+    .slide.exit-left {
+      opacity: 0;
+      transform: translateX(-90px);
+    }
+
+    .slide.exit-right {
+      opacity: 0;
+      transform: translateX(90px);
     }
 
     .photo {
       width: min(88vw, 820px);
       height: min(76vh, 720px);
-
       object-fit: contain;
-      object-position: center;
-
-      border-radius: 22px;
+      border-radius: 20px;
       display: block;
     }
 
@@ -93,25 +95,25 @@
       position: fixed;
       top: 50%;
       transform: translateY(-50%);
+      z-index: 1000;
 
-      width: 52px;
-      height: 52px;
+      width: 54px;
+      height: 54px;
       border-radius: 50%;
-
       border: none;
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(8px);
 
-      color: rgba(255,255,255,0.82);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+
+      color: rgba(255,255,255,0.85);
       font-size: 1.5rem;
       cursor: pointer;
-      z-index: 1000;
 
       transition: 0.25s ease;
     }
 
     .arrow:hover {
-      background: rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.15);
       transform: translateY(-50%) scale(1.05);
     }
 
@@ -128,15 +130,14 @@
       bottom: 22px;
       left: 50%;
       transform: translateX(-50%);
-      color: rgba(255,255,255,0.38);
+      color: rgba(255,255,255,0.36);
       font-size: 0.72rem;
     }
 
     @media (max-width: 600px) {
       .photo {
         width: 92vw;
-        height: 70vh;
-        border-radius: 18px;
+        height: 72vh;
       }
 
       .arrow {
@@ -171,15 +172,15 @@
 <div class="viewer">
 
   <div class="slide active">
-    <img src="rome1.jfif" class="photo" alt="Rome photo 1">
+    <img src="rome1.jfif" class="photo">
   </div>
 
   <div class="slide">
-    <img src="rome2.jfif" class="photo" alt="Rome photo 2">
+    <img src="rome2.jfif" class="photo">
   </div>
 
   <div class="slide">
-    <img src="rome3.jfif" class="photo" alt="Rome photo 3">
+    <img src="rome3.jfif" class="photo">
   </div>
 
 </div>
@@ -201,41 +202,46 @@ const slides = document.querySelectorAll(".slide");
 const counter = document.getElementById("counter");
 
 let current = 0;
-let busy = false;
-
-function showSlide(index) {
-  if (busy) return;
-  busy = true;
-
-  slides.forEach(slide => {
-    slide.classList.remove("active");
-  });
-
-  setTimeout(() => {
-    slides[index].classList.add("active");
-    counter.textContent = `${index + 1} / ${slides.length}`;
-  }, 120);
-
-  setTimeout(() => {
-    busy = false;
-  }, 1200);
-}
+let transitioning = false;
 
 function changeSlide(direction) {
-  current += direction;
+  if (transitioning) return;
+  transitioning = true;
 
-  if (current < 0) {
-    current = slides.length - 1;
-  }
+  const currentSlide = slides[current];
 
-  if (current >= slides.length) {
-    current = 0;
-  }
+  currentSlide.classList.add(
+    direction === 1 ? "exit-left" : "exit-right"
+  );
 
-  showSlide(current);
+  let next = current + direction;
+
+  if (next < 0) next = slides.length - 1;
+  if (next >= slides.length) next = 0;
+
+  const nextSlide = slides[next];
+  nextSlide.classList.add("active");
+
+  current = next;
+  counter.textContent = `${current + 1} / ${slides.length}`;
+
+  setTimeout(() => {
+    slides.forEach(slide => {
+      slide.classList.remove(
+        "exit-left",
+        "exit-right"
+      );
+
+      if (slide !== slides[current]) {
+        slide.classList.remove("active");
+      }
+    });
+
+    transitioning = false;
+  }, 2200);
 }
 
-/* swipe */
+/* swipe support */
 let startX = 0;
 
 document.addEventListener("touchstart", e => {
@@ -243,16 +249,11 @@ document.addEventListener("touchstart", e => {
 });
 
 document.addEventListener("touchend", e => {
-  const endX = e.changedTouches[0].clientX;
-  const diff = startX - endX;
+  const diff =
+    startX - e.changedTouches[0].clientX;
 
-  if (diff > 50) {
-    changeSlide(1);
-  }
-
-  if (diff < -50) {
-    changeSlide(-1);
-  }
+  if (diff > 50) changeSlide(1);
+  if (diff < -50) changeSlide(-1);
 });
 </script>
 
