@@ -18,18 +18,19 @@
     body {
       margin: 0;
       overflow: hidden;
-      background: #24191d;
+      background: #ffc0cb;
       font-family: Georgia, serif;
     }
 
     #map {
       height: 100vh;
       width: 100vw;
+
       filter:
-        sepia(0.18)
-        saturate(1.15)
-        hue-rotate(-18deg)
-        brightness(1.04);
+        hue-rotate(-45deg)
+        saturate(3)
+        brightness(1.15)
+        contrast(0.9);
     }
 
     .home {
@@ -37,7 +38,7 @@
       top: 24px;
       left: 24px;
       z-index: 1000;
-      color: rgba(255,255,255,0.82);
+      color: rgba(255,255,255,0.88);
       text-decoration: none;
       font-size: 1rem;
     }
@@ -48,16 +49,16 @@
       left: 24px;
       z-index: 1000;
       font-size: 0.7rem;
-      color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.55);
     }
 
     .memory-pin {
       width: 8px;
       height: 8px;
-      background: #ddb27c;
+      background: #ffd166;
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.35);
-      box-shadow: 0 0 5px rgba(221,178,124,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      box-shadow: 0 0 5px rgba(255,209,102,0.3);
     }
 
     @media (max-width: 600px) {
@@ -93,7 +94,6 @@
     worldCopyJump: false
   });
 
-  // warmer basemap
   L.tileLayer(
     "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
     {
