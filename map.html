@@ -109,13 +109,19 @@
     iconAnchor: [4, 4]
   });
 
-  function addPin(lat, lng) {
-    L.marker([lat, lng], {
+  function addPin(lat, lng, page = null) {
+    const marker = L.marker([lat, lng], {
       icon: memoryIcon
     }).addTo(map);
+
+    if (page) {
+      marker.on("click", () => {
+        window.location.href = page;
+      });
+    }
   }
 
-  addPin(41.9028, 12.4964);
+  addPin(41.9028, 12.4964, "rome.html");
   addPin(52.3676, 4.9041);
   addPin(54.3520, 18.6466);
   addPin(52.5200, 13.4050);
