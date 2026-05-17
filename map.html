@@ -33,14 +33,25 @@
         contrast(0.92);
     }
 
-    .home {
+    .home-wrap {
       position: absolute;
       top: 24px;
       left: 24px;
       z-index: 1000;
+    }
+
+    .home {
       color: rgba(255,255,255,0.88);
       text-decoration: none;
       font-size: 1rem;
+      display: block;
+    }
+
+    .country-count {
+      margin-top: 5px;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.58);
+      letter-spacing: 0.02em;
     }
 
     .signature {
@@ -66,6 +77,10 @@
         font-size: 0.9rem;
       }
 
+      .country-count {
+        font-size: 0.62rem;
+      }
+
       .signature {
         font-size: 0.55rem;
       }
@@ -75,9 +90,15 @@
 
 <body>
 
-<a href="index.html" class="home">
-  ← Home
-</a>
+<div class="home-wrap">
+  <a href="index.html" class="home">
+    ← Home
+  </a>
+
+  <div class="country-count">
+    Countries visited · 8
+  </div>
+</div>
 
 <div id="map"></div>
 
@@ -105,8 +126,8 @@ L.tileLayer(
 const memoryIcon = L.divIcon({
   className: "",
   html: '<div class="memory-pin"></div>',
-  iconSize: [8, 8],
-  iconAnchor: [4, 4]
+  iconSize: [8,8],
+  iconAnchor: [4,4]
 });
 
 function addPin(lat, lng, page = null) {
@@ -130,13 +151,11 @@ addPin(50.7350, -1.7830, "highcliffe.html"); // Highcliffe
 addPin(57.1475, -2.0954); // Aberdeen
 addPin(57.2842, -2.3776); // Inverurie
 addPin(57.3348, -2.3202); // Oldmeldrum
-
-// Shared additions
 addPin(55.9533, -3.1883); // Edinburgh
 addPin(57.1950, -3.8260); // Aviemore
 addPin(36.5390, -4.6244); // Fuengirola
 addPin(51.5072, -0.1276); // London
-addPin(34.7754, 32.4245); // Cyprus (Paphos placeholder)
+addPin(34.7754, 32.4245); // Cyprus
 addPin(57.1440, -4.6817); // Caledonian Canal / Loch Ness
 addPin(52.1364, -0.4667); // Bedford
 
