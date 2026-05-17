@@ -12,64 +12,62 @@
 
     body {
       margin: 0;
-      min-height: 100vh;
-      background: #f3d5dd;
       font-family: Georgia, serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
+      background: black;
     }
 
-    .container {
-      text-align: center;
-      padding: 24px;
+    .hero {
+      height: 100vh;
+      background-image:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.18),
+          rgba(0,0,0,0.28)
+        ),
+        url('hero.jpg.jfif');
+
+      background-size: cover;
+      background-position: center center;
+      position: relative;
+      padding: 7vh 8%;
     }
 
-    h1 {
-      font-size: clamp(2.2rem, 7vw, 4rem);
-      font-weight: normal;
-      color: rgba(60,60,60,0.9);
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
-      font-size: 1rem;
-      color: rgba(60,60,60,0.55);
-      margin-bottom: 40px;
-    }
-
-    .button-wrap {
+    .menu {
+      margin-top: 6vh;
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      align-items: center;
+      gap: 12px;
     }
 
-    .map-button {
-      width: min(280px, 78vw);
-      padding: 16px 22px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: transform 0.2s ease;
-      border: none;
-      cursor: pointer;
-      display: inline-block;
-    }
-
-    .map-button:hover {
-      transform: scale(1.02);
-    }
-
-    .holly {
-      background: rgba(255,255,255,0.6);
-      color: rgba(60,60,60,0.9);
-    }
-
-    .dad {
-      background: rgba(30,30,30,0.88);
+    .menu a {
       color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      font-size: 1.45rem;
+      font-weight: 300;
+      transition: 0.25s ease;
+      width: fit-content;
+    }
+
+    .menu a:hover {
+      transform: translateX(6px);
+    }
+
+    .dad-link {
+      position: absolute;
+      left: 8%;
+      bottom: 8vh;
+
+      color: rgba(255,255,255,0.58);
+      text-decoration: none;
+      font-size: 1.08rem;
+      font-weight: 300;
+      transition: 0.25s ease;
+    }
+
+    .dad-link:hover {
+      color: rgba(255,255,255,0.82);
+      transform: translateX(4px);
     }
 
     .signature {
@@ -77,10 +75,23 @@
       bottom: 18px;
       left: 24px;
       font-size: 0.7rem;
-      color: rgba(60,60,60,0.45);
+      color: rgba(255,255,255,0.45);
     }
 
     @media (max-width: 600px) {
+      .menu {
+        margin-top: 4vh;
+      }
+
+      .menu a {
+        font-size: 1.1rem;
+      }
+
+      .dad-link {
+        bottom: 15vh;
+        font-size: 0.9rem;
+      }
+
       .signature {
         font-size: 0.55rem;
       }
@@ -90,23 +101,19 @@
 
 <body>
 
-<div class="container">
-  <h1>For Holly</h1>
+<section class="hero">
 
-  <div class="subtitle">
-    Little places that mattered
+  <div class="menu">
+    <a href="map.html">Places</a>
+    <a href="years.html">Years</a>
+    <a href="creations.html">Creations</a>
   </div>
 
-  <div class="button-wrap">
-    <a href="map.html" class="map-button holly">
-      Holly's Map
-    </a>
+  <a href="dad-map.html" class="dad-link">
+    Dad’s Travels
+  </a>
 
-    <a href="dad-map.html" class="map-button dad">
-      Dad Places
-    </a>
-  </div>
-</div>
+</section>
 
 <div class="signature">
   Created with love by Rob Hartshorn · 2026
