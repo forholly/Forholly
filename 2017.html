@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>2017 · For Holly</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background: #000;
+      color: white;
+    }
+
+    .hero {
+      min-height: 100vh;
+
+      background-image:
+        linear-gradient(
+          to right,
+          rgba(0,0,0,0.45) 0%,
+          rgba(0,0,0,0.22) 35%,
+          rgba(0,0,0,0.08) 60%,
+          rgba(0,0,0,0.12) 100%
+        ),
+        url('attack.jpg.jfif');
+
+      background-size: cover;
+      background-position: center 25%;
+      background-repeat: no-repeat;
+    }
+
+    .container {
+      padding: 8vh 8%;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: normal;
+      margin: 0;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .signature {
+      position: fixed;
+      bottom: 18px;
+      left: 24px;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 7vh 8%;
+      }
+
+      .back {
+        font-size: 0.85rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .signature {
+        font-size: 0.55rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<section class="hero">
+  <div class="container">
+
+    <a href="years.html" class="back">
+      ← Years
+    </a>
+
+    <h1>2017</h1>
+
+  </div>
+</section>
+
+<div class="signature">
+  Created with love by Rob Hartshorn · 2026
+</div>
+
+</body>
+</html>
