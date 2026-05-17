@@ -10,63 +10,83 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
       margin: 0;
-      background: black;
-      overflow: hidden;
+      padding: 0;
+      background: #111;
       font-family: Georgia, serif;
+      color: white;
     }
 
-    .hero {
-      height: 100vh;
-      width: 100vw;
-
-      background-image:
-        linear-gradient(
-          to bottom,
-          rgba(0,0,0,0.10),
-          rgba(0,0,0,0.22)
-        ),
-        url('colloseum.jpg.jfif');
-
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-
-      position: relative;
+    body {
+      overflow-x: hidden;
     }
 
-    .back {
-      position: absolute;
+    .top-bar {
+      position: fixed;
       top: 24px;
       left: 24px;
-
-      color: rgba(255,255,255,0.82);
-      text-decoration: none;
-      font-size: 1rem;
       z-index: 1000;
     }
 
-    .signature {
-      position: absolute;
-      bottom: 18px;
-      left: 24px;
+    .back {
+      color: rgba(255,255,255,0.72);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
 
+    .title {
+      margin-top: 6px;
+      font-size: 0.8rem;
       color: rgba(255,255,255,0.45);
-      font-size: 0.7rem;
+      letter-spacing: 0.03em;
+    }
+
+    .gallery {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 90px 0 50px;
+    }
+
+    .photo-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .photo {
+      width: min(92vw, 850px);
+      height: auto;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .signature {
+      text-align: center;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.35);
+      padding: 30px 0 40px;
     }
 
     @media (max-width: 600px) {
-      .hero {
-        background-position: center center;
-      }
-
       .back {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
       }
 
-      .signature {
-        font-size: 0.55rem;
+      .title {
+        font-size: 0.72rem;
+      }
+
+      .gallery {
+        gap: 14px;
+        padding-top: 80px;
+      }
+
+      .photo {
+        width: 96vw;
+        border-radius: 14px;
       }
     }
   </style>
@@ -74,16 +94,34 @@
 
 <body>
 
-<div class="hero">
-
+<div class="top-bar">
   <a href="map.html" class="back">
-    ← Map
+    ← Places
   </a>
 
-  <div class="signature">
-    Created with love by Rob Hartshorn · 2026
+  <div class="title">
+    Rome
+  </div>
+</div>
+
+<div class="gallery">
+
+  <div class="photo-wrap">
+    <img src="rome1.jfif" class="photo" alt="Rome photo 1">
   </div>
 
+  <div class="photo-wrap">
+    <img src="rome2.jfif" class="photo" alt="Rome photo 2">
+  </div>
+
+  <div class="photo-wrap">
+    <img src="rome3.jfif" class="photo" alt="Rome photo 3">
+  </div>
+
+</div>
+
+<div class="signature">
+  Created with love by Rob Hartshorn · 2026
 </div>
 
 </body>
