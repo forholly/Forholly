@@ -107,7 +107,7 @@
   </a>
 
   <a href="map.html" class="home">
-    Holly's Places →
+    ← Holly's Places
   </a>
 
   <div class="country-count">
@@ -175,7 +175,6 @@ function addPin(lat, lng, options = {}) {
     icon: memoryIcon
   }).addTo(map);
 
-  // Shared memories
   if (options.shared) {
 
     const popupContent = options.link
@@ -192,7 +191,6 @@ function addPin(lat, lng, options = {}) {
     return;
   }
 
-  // Dad-only note
   if (options.note) {
     marker.bindPopup(`
       <div class="tiny-popup">
