@@ -71,6 +71,17 @@
       box-shadow: 0 0 2px rgba(0,0,0,0.28);
     }
 
+    .tiny-popup {
+      font-family: Georgia, serif;
+      font-size: 12px;
+      color: #222;
+    }
+
+    .tiny-popup a {
+      text-decoration: none;
+      color: #222;
+    }
+
     @media (max-width: 600px) {
       .home {
         font-size: 0.9rem;
@@ -152,16 +163,52 @@ const memoryIcon = L.divIcon({
   iconAnchor: [4,4]
 });
 
-function addPin(lat, lng) {
-  L.marker([lat, lng], {
+function addPin(lat, lng, options = {}) {
+
+  const marker = L.marker([lat, lng], {
     icon: memoryIcon
   }).addTo(map);
+
+  // Shared memories
+  if (options.shared) {
+
+    const popupContent = options.link
+      ? `<div class="tiny-popup">
+          <a href="${options.link}">
+            Holly memories →
+          </a>
+        </div>`
+      : `<div class="tiny-popup">
+          Holly memories
+        </div>`;
+
+    marker.bindPopup(popupContent);
+    return;
+  }
+
+  // Dad-only note
+  if (options.note) {
+    marker.bindPopup(`
+      <div class="tiny-popup">
+        ${options.note}
+      </div>
+    `);
+    return;
+  }
 }
 
 /* Shared places */
-addPin(41.9028, 12.4964);
+addPin(41.9028, 12.4964, {
+  shared: true,
+  link: "rome.html"
+});
+
 addPin(50.7350, -1.7830);
-addPin(52.3676, 4.9041);
+
+addPin(52.3676, 4.9041, {
+  shared: true
+});
+
 addPin(54.3520, 18.6466);
 addPin(52.5200, 13.4050);
 addPin(57.1475, -2.0954);
@@ -218,7 +265,11 @@ addPin(13.7563, 100.5018);
 addPin(3.1390, 101.6869);
 addPin(3.8168, 103.3317);
 addPin(2.6931, 101.7498);
-addPin(19.0760, 72.8777);
+
+addPin(19.0760, 72.8777, {
+  note: "India"
+});
+
 addPin(22.5726, 88.3639);
 addPin(12.9716, 77.5946);
 addPin(17.3850, 78.4867);
