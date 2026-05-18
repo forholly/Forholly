@@ -69,6 +69,25 @@
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.12);
       box-shadow: 0 0 2px rgba(0,0,0,0.28);
+      transition: all 0.18s ease;
+    }
+
+    .memory-pin.interactive {
+      cursor: pointer;
+    }
+
+    .memory-pin.interactive:hover {
+      transform: scale(1.25);
+      box-shadow:
+        0 0 6px rgba(255,255,255,0.18),
+        0 0 2px rgba(0,0,0,0.18);
+    }
+
+    .memory-pin.active {
+      transform: scale(1.25);
+      box-shadow:
+        0 0 6px rgba(255,255,255,0.18),
+        0 0 2px rgba(0,0,0,0.18);
     }
 
     .tiny-popup {
@@ -175,6 +194,30 @@ function addPin(lat, lng, options = {}) {
     icon: memoryIcon
   }).addTo(map);
 
+  // interactive pins
+  if (options.interactive) {
+    marker.on("add", () => {
+      const el = marker.getElement()?.querySelector(".memory-pin");
+      if (el) {
+        el.classList.add("interactive");
+      }
+    });
+
+    marker.on("popupopen", () => {
+      const el = marker.getElement()?.querySelector(".memory-pin");
+      if (el) {
+        el.classList.add("active");
+      }
+    });
+
+    marker.on("popupclose", () => {
+      const el = marker.getElement()?.querySelector(".memory-pin");
+      if (el) {
+        el.classList.remove("active");
+      }
+    });
+  }
+
   if (options.shared) {
 
     const popupContent = options.link
@@ -204,13 +247,15 @@ function addPin(lat, lng, options = {}) {
 /* Shared places */
 addPin(41.9028, 12.4964, {
   shared: true,
+  interactive: true,
   link: "rome.html"
 });
 
 addPin(50.7350, -1.7830);
 
 addPin(52.3676, 4.9041, {
-  shared: true
+  shared: true,
+  interactive: true
 });
 
 addPin(54.3520, 18.6466);
