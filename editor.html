@@ -25,7 +25,7 @@
 
     h1 {
       font-weight: normal;
-      margin-bottom: 30px;
+      margin-bottom: 12px;
     }
 
     .subtle {
@@ -58,10 +58,6 @@
       line-height: 1.6;
     }
 
-    input[type="file"] {
-      margin-top: 10px;
-    }
-
     .checkboxes {
       display: flex;
       gap: 28px;
@@ -88,11 +84,6 @@
 
     button:hover {
       opacity: 0.92;
-    }
-
-    .status {
-      margin-top: 20px;
-      color: rgba(0,0,0,0.65);
     }
   </style>
 </head>
@@ -125,14 +116,14 @@
   <input
     type="text"
     id="location"
-    placeholder="Floro"
+    placeholder="Location"
   >
 
   <label>Page title *</label>
   <input
     type="text"
     id="title"
-    placeholder="COVID in Floro"
+    placeholder="Page title"
   >
 
   <label>Story</label>
@@ -141,19 +132,9 @@
     placeholder="Optional..."
   ></textarea>
 
-  <label>Photos</label>
-  <input
-    type="file"
-    id="photos"
-    multiple
-    accept="image/*"
-  >
-
   <button onclick="createPage()">
     Create Page
   </button>
-
-  <div class="status" id="status"></div>
 
 </div>
 
@@ -166,23 +147,7 @@ function slugify(text) {
     .replace(/[^\w\-]+/g, "");
 }
 
-function readFiles(files) {
-  return Promise.all(
-    Array.from(files).map(file => {
-      return new Promise(resolve => {
-        const reader = new FileReader();
-
-        reader.onload = e => {
-          resolve(e.target.result);
-        };
-
-        reader.readAsDataURL(file);
-      });
-    })
-  );
-}
-
-async function createPage() {
+function createPage() {
 
   const dad =
     document.getElementById("dad").checked;
@@ -205,13 +170,6 @@ async function createPage() {
     .value
     .trim();
 
-  const files =
-    document.getElementById("photos")
-    .files;
-
-  const status =
-    document.getElementById("status");
-
   if (!location) {
     alert("Please add a location.");
     return;
@@ -231,48 +189,31 @@ async function createPage() {
   }
 
   const filename =
-    `${prefix}-${slugify(location)}.html`;
+    prefix + "-" +
+    slugify(location) +
+    ".html";
 
-  let navLink =
-    '<a href="map.html">← Holly\\'s Places</a>';
+  let mapLink =
+    "map.html";
+
+  let mapText =
+    "← Holly's Places";
 
   if (prefix === "dad") {
-    navLink =
-      '<a href="dad-.html">← Dad\\'s Places</a>';
+    mapLink = "dad-";
+    mapText = "← Dad's Places";
   }
 
-  if (prefix === "shared") {
-    navLink =
-      '<a href="dad-.html">← Dad\\'s Places</a>';
-  }
-
-  status.innerText = "Building page...";
-
-  const images =
-    await readFiles(files);
-
-  const imageHtml =
-    images.map(img => `
-      <img
-        src="${img}"
-        class="hero-image"
-      >
-    `).join("");
-
-  const html = `
-<!DOCTYPE html>
+  const html =
+`<!DOCTYPE html>
 <html>
 <head>
   <title>${title} · For Holly</title>
 
   <meta name="viewport"
-    content="width=device-width, initial-scale=1">
+  content="width=device-width, initial-scale=1">
 
   <style>
-    *{
-      box-sizing:border-box;
-    }
-
     body{
       margin:0;
       background:#f5f2ee;
@@ -284,44 +225,29 @@ async function createPage() {
       position:fixed;
       top:24px;
       left:24px;
-      z-index:1000;
     }
 
     .nav a{
       display:block;
-      color:rgba(45,45,45,0.88);
       text-decoration:none;
+      color:rgba(45,45,45,0.88);
       margin-bottom:6px;
     }
 
     .wrap{
-      max-width:920px;
+      max-width:900px;
       margin:auto;
       padding:90px 20px 80px;
     }
 
-    .hero-image{
-      width:100%;
-      border-radius:14px;
-      margin-bottom:18px;
-      display:block;
-    }
-
     h1{
       font-weight:normal;
-      margin-top:34px;
-      margin-bottom:22px;
+      margin-bottom:24px;
     }
 
     .story{
       line-height:1.75;
       font-size:1.04rem;
-    }
-
-    .signature{
-      margin-top:60px;
-      color:rgba(0,0,0,0.45);
-      font-size:0.8rem;
     }
   </style>
 </head>
@@ -329,16 +255,18 @@ async function createPage() {
 <body>
 
 <div class="nav">
+
   <a href="index.html">
     ← Home
   </a>
 
-  ${navLink}
+  <a href="${mapLink}">
+    ${mapText}
+  </a>
+
 </div>
 
 <div class="wrap">
-
-  ${imageHtml}
 
   <h1>${title}</h1>
 
@@ -346,15 +274,10 @@ async function createPage() {
     ${story.replace(/\n/g, "<br>")}
   </div>
 
-  <div class="signature">
-    Created with love by Rob Hartshorn · 2026
-  </div>
-
 </div>
 
 </body>
-</html>
-`;
+</html>`;
 
   const blob = new Blob(
     [html],
@@ -370,10 +293,11 @@ async function createPage() {
   a.download =
     filename;
 
+  document.body.appendChild(a);
+
   a.click();
 
-  status.innerText =
-    `Downloaded ${filename}`;
+  document.body.removeChild(a);
 }
 </script>
 
