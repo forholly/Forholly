@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       background: #f5f2ee;
@@ -15,7 +19,7 @@
     }
 
     .wrap {
-      max-width: 700px;
+      max-width: 760px;
       margin: auto;
     }
 
@@ -24,9 +28,15 @@
       margin-bottom: 30px;
     }
 
+    .subtle {
+      color: rgba(0,0,0,0.55);
+      margin-bottom: 35px;
+      font-size: 0.95rem;
+    }
+
     label {
       display: block;
-      margin-top: 22px;
+      margin-top: 24px;
       margin-bottom: 8px;
       font-size: 0.95rem;
     }
@@ -34,9 +44,9 @@
     input[type="text"],
     textarea {
       width: 100%;
-      padding: 12px;
-      border: 1px solid rgba(0,0,0,0.15);
-      border-radius: 8px;
+      padding: 14px;
+      border: 1px solid rgba(0,0,0,0.14);
+      border-radius: 10px;
       font-family: Georgia, serif;
       font-size: 1rem;
       background: white;
@@ -45,23 +55,31 @@
     textarea {
       min-height: 180px;
       resize: vertical;
+      line-height: 1.6;
+    }
+
+    input[type="file"] {
+      margin-top: 10px;
     }
 
     .checkboxes {
       display: flex;
-      gap: 24px;
-      margin-top: 10px;
+      gap: 28px;
+      margin-top: 8px;
     }
 
     .checkboxes label {
       margin: 0;
+      display: flex;
+      gap: 8px;
+      align-items: center;
     }
 
     button {
-      margin-top: 35px;
+      margin-top: 40px;
       padding: 14px 22px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       background: #e8d9dd;
       font-family: Georgia, serif;
       font-size: 1rem;
@@ -69,7 +87,12 @@
     }
 
     button:hover {
-      opacity: 0.9;
+      opacity: 0.92;
+    }
+
+    .status {
+      margin-top: 20px;
+      color: rgba(0,0,0,0.65);
     }
   </style>
 </head>
@@ -79,6 +102,10 @@
 <div class="wrap">
 
   <h1>For Holly Editor</h1>
+
+  <div class="subtle">
+    Create a memory page.
+  </div>
 
   <label>Who remembers this?</label>
 
@@ -94,18 +121,39 @@
     </label>
   </div>
 
-  <label>Location</label>
-  <input type="text" id="location" placeholder="Feda">
+  <label>Location *</label>
+  <input
+    type="text"
+    id="location"
+    placeholder="Floro"
+  >
 
-  <label>Page title</label>
-  <input type="text" id="title" placeholder="Spent COVID in Feda">
+  <label>Page title *</label>
+  <input
+    type="text"
+    id="title"
+    placeholder="COVID in Floro"
+  >
 
   <label>Story</label>
-  <textarea id="story"></textarea>
+  <textarea
+    id="story"
+    placeholder="Optional..."
+  ></textarea>
+
+  <label>Photos</label>
+  <input
+    type="file"
+    id="photos"
+    multiple
+    accept="image/*"
+  >
 
   <button onclick="createPage()">
     Create Page
   </button>
+
+  <div class="status" id="status"></div>
 
 </div>
 
@@ -118,83 +166,189 @@ function slugify(text) {
     .replace(/[^\w\-]+/g, "");
 }
 
-function createPage() {
+function readFiles(files) {
+  return Promise.all(
+    Array.from(files).map(file => {
+      return new Promise(resolve => {
+        const reader = new FileReader();
 
-  const dad = document.getElementById("dad").checked;
-  const holly = document.getElementById("holly").checked;
+        reader.onload = e => {
+          resolve(e.target.result);
+        };
+
+        reader.readAsDataURL(file);
+      });
+    })
+  );
+}
+
+async function createPage() {
+
+  const dad =
+    document.getElementById("dad").checked;
+
+  const holly =
+    document.getElementById("holly").checked;
 
   const location =
-    document.getElementById("location").value.trim();
+    document.getElementById("location")
+    .value
+    .trim();
 
   const title =
-    document.getElementById("title").value.trim();
+    document.getElementById("title")
+    .value
+    .trim();
 
   const story =
-    document.getElementById("story").value.trim();
+    document.getElementById("story")
+    .value
+    .trim();
 
-  let prefix = "";
+  const files =
+    document.getElementById("photos")
+    .files;
+
+  const status =
+    document.getElementById("status");
+
+  if (!location) {
+    alert("Please add a location.");
+    return;
+  }
+
+  if (!title) {
+    alert("Please add a page title.");
+    return;
+  }
+
+  let prefix = "holly";
 
   if (dad && holly) {
     prefix = "shared";
   } else if (dad) {
     prefix = "dad";
-  } else {
-    prefix = "holly";
   }
 
   const filename =
     `${prefix}-${slugify(location)}.html`;
 
+  let navLink =
+    '<a href="map.html">← Holly\\'s Places</a>';
+
+  if (prefix === "dad") {
+    navLink =
+      '<a href="dad-.html">← Dad\\'s Places</a>';
+  }
+
+  if (prefix === "shared") {
+    navLink =
+      '<a href="dad-.html">← Dad\\'s Places</a>';
+  }
+
+  status.innerText = "Building page...";
+
+  const images =
+    await readFiles(files);
+
+  const imageHtml =
+    images.map(img => `
+      <img
+        src="${img}"
+        class="hero-image"
+      >
+    `).join("");
+
   const html = `
 <!DOCTYPE html>
 <html>
 <head>
-<title>${title} · For Holly</title>
+  <title>${title} · For Holly</title>
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1">
 
-<style>
-body{
-margin:0;
-background:#f5f2ee;
-font-family:Georgia,serif;
-color:#222;
-}
+  <style>
+    *{
+      box-sizing:border-box;
+    }
 
-.wrap{
-max-width:900px;
-margin:auto;
-padding:40px 20px;
-}
+    body{
+      margin:0;
+      background:#f5f2ee;
+      font-family:Georgia, serif;
+      color:#222;
+    }
 
-.hero{
-width:100%;
-border-radius:12px;
-margin-bottom:30px;
-}
+    .nav{
+      position:fixed;
+      top:24px;
+      left:24px;
+      z-index:1000;
+    }
 
-h1{
-font-weight:normal;
-margin-bottom:20px;
-}
+    .nav a{
+      display:block;
+      color:rgba(45,45,45,0.88);
+      text-decoration:none;
+      margin-bottom:6px;
+    }
 
-.story{
-line-height:1.7;
-font-size:1.05rem;
-}
-</style>
+    .wrap{
+      max-width:920px;
+      margin:auto;
+      padding:90px 20px 80px;
+    }
+
+    .hero-image{
+      width:100%;
+      border-radius:14px;
+      margin-bottom:18px;
+      display:block;
+    }
+
+    h1{
+      font-weight:normal;
+      margin-top:34px;
+      margin-bottom:22px;
+    }
+
+    .story{
+      line-height:1.75;
+      font-size:1.04rem;
+    }
+
+    .signature{
+      margin-top:60px;
+      color:rgba(0,0,0,0.45);
+      font-size:0.8rem;
+    }
+  </style>
 </head>
 
 <body>
 
+<div class="nav">
+  <a href="index.html">
+    ← Home
+  </a>
+
+  ${navLink}
+</div>
+
 <div class="wrap">
 
-<h1>${title}</h1>
+  ${imageHtml}
 
-<div class="story">
-${story.replace(/\n/g, "<br>")}
-</div>
+  <h1>${title}</h1>
+
+  <div class="story">
+    ${story.replace(/\n/g, "<br>")}
+  </div>
+
+  <div class="signature">
+    Created with love by Rob Hartshorn · 2026
+  </div>
 
 </div>
 
@@ -202,15 +356,24 @@ ${story.replace(/\n/g, "<br>")}
 </html>
 `;
 
-  const blob = new Blob([html], {
-    type: "text/html"
-  });
+  const blob = new Blob(
+    [html],
+    { type: "text/html" }
+  );
 
-  const a = document.createElement("a");
+  const a =
+    document.createElement("a");
 
-  a.href = URL.createObjectURL(blob);
-  a.download = filename;
+  a.href =
+    URL.createObjectURL(blob);
+
+  a.download =
+    filename;
+
   a.click();
+
+  status.innerText =
+    `Downloaded ${filename}`;
 }
 </script>
 
