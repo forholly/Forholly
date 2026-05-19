@@ -58,6 +58,10 @@
       line-height: 1.6;
     }
 
+    input[type="file"] {
+      margin-top: 8px;
+    }
+
     .checkboxes {
       display: flex;
       gap: 28px;
@@ -132,6 +136,14 @@
     placeholder="Optional..."
   ></textarea>
 
+  <label>Photos</label>
+  <input
+    type="file"
+    id="photos"
+    accept="image/*"
+    multiple
+  >
+
   <button onclick="createPage()">
     Create Page
   </button>
@@ -147,7 +159,19 @@ function slugify(text) {
     .replace(/[^\w\-]+/g, "");
 }
 
-function createPage() {
+function fileToDataURL(file) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      resolve(e.target.result);
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+
+async function createPage() {
 
   const dad =
     document.getElementById("dad").checked;
@@ -169,6 +193,10 @@ function createPage() {
     document.getElementById("story")
     .value
     .trim();
+
+  const photos =
+    document.getElementById("photos")
+    .files;
 
   if (!location) {
     alert("Please add a location.");
@@ -204,6 +232,21 @@ function createPage() {
     mapText = "← Dad's Places";
   }
 
+  const imageData =
+    await Promise.all(
+      Array.from(photos).map(file =>
+        fileToDataURL(file)
+      )
+    );
+
+  const imagesHtml =
+    imageData.map(image => `
+      <img
+        src="${image}"
+        class="memory-photo"
+      >
+    `).join("");
+
   const html =
 `<!DOCTYPE html>
 <html>
@@ -214,6 +257,10 @@ function createPage() {
   content="width=device-width, initial-scale=1">
 
   <style>
+    *{
+      box-sizing:border-box;
+    }
+
     body{
       margin:0;
       background:#f5f2ee;
@@ -225,6 +272,7 @@ function createPage() {
       position:fixed;
       top:24px;
       left:24px;
+      z-index:1000;
     }
 
     .nav a{
@@ -235,13 +283,24 @@ function createPage() {
     }
 
     .wrap{
-      max-width:900px;
+      max-width:760px;
       margin:auto;
       padding:90px 20px 80px;
     }
 
+    .memory-photo{
+      width:100%;
+      max-width:700px;
+      display:block;
+      margin:0 auto 24px auto;
+      border-radius:18px;
+      box-shadow:
+        0 6px 20px rgba(0,0,0,0.08);
+    }
+
     h1{
       font-weight:normal;
+      margin-top:40px;
       margin-bottom:24px;
     }
 
@@ -267,6 +326,8 @@ function createPage() {
 </div>
 
 <div class="wrap">
+
+  ${imagesHtml}
 
   <h1>${title}</h1>
 
